@@ -1,0 +1,99 @@
+﻿@page "/serverside"
+@using System.Diagnostics
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+@inject IDatabaseService databaseService
+
+<!-- Html start here -->
+<PageTitle>Server-side</PageTitle>
+
+<h1>Server-side</h1>
+
+<p>This component demonstrates showing data.</p>
+
+<button class="@myButtonClass" @onclick="ClickButton">Click me</button>
+
+@if (dbStrings == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var dbString in dbStrings)
+            {
+                <tr>
+                    <td>@dbString.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+            <!-- Html end here -->
+
+<!-- Css start here -->
+<style>
+    .button {
+        color: #fff;
+        background-color: #ff140c;
+    }
+</style>
+            <!-- Css end here -->
+
+<!-- Javascript start here -->
+<script>
+    console.log("js lol");
+</script>
+            <!-- Javascript end here -->
+
+<!-- C# start here -->
+@code {
+
+    // fields
+    string myButtonClass = "x";
+    static string redButtonClass = "button";
+    static string blueButtonClass = "blue-button";
+
+    // methods
+    private void ClickButton()
+    {
+        if (myButtonClass == redButtonClass)
+        {
+            myButtonClass = blueButtonClass;
+        }
+        else
+        {
+            myButtonClass = redButtonClass;
+        }
+        Debug.Print("Clicked");
+    }
+
+    private DBStrings[]? dbStrings;
+
+    protected override async Task OnInitializedAsync()
+    {
+        myButtonClass = redButtonClass;
+        var summaries = await GetStringsFromDb();
+        dbStrings = Enumerable.Range(1, summaries.Count).Select(index => new DBStrings
+        {
+            Summary = summaries[index-1]
+        }).ToArray();
+    }
+
+    private class DBStrings
+    {
+        public string? Summary { get; set; }
+    }
+
+    private async Task<List<string>> GetStringsFromDb()
+    {
+        return await databaseService.GetStringsFromDb();
+    }
+}
+            <!-- C# end here -->
