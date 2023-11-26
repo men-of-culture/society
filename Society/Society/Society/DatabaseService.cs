@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MySqlConnector;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 namespace Society
@@ -9,26 +10,25 @@ namespace Society
     }
     public class DatabaseService: IDatabaseService
     {
-        private readonly string connectionString = "Server=myServerAddress;Database=myDatabase;User Id=myUsername;Password=myPassword;";
+        private readonly string connectionString = "Server=sql8.freemysqlhosting.net;Database=sql8665264;User Id=sql8665264;Password=cqXXVwnqeV;"; // port 3306
 
         public async Task<List<string>> GetStringsFromDb()
         {
             var data = new List<string>();
 
-            /*using SqlConnection connection = new SqlConnection(connectionString);
+            using MySqlConnection connection = new MySqlConnection(connectionString);
             await connection.OpenAsync();
 
-            // Replace "MyTable" with your actual table name and "MyColumn" with the column you want to retrieve.
-            using SqlCommand command = new SqlCommand("SELECT MyColumn FROM MyTable", connection);
-            using SqlDataReader reader = await command.ExecuteReaderAsync();
+            using MySqlCommand command = new MySqlCommand("SELECT MyColumn FROM MyTable", connection);
+            using MySqlDataReader reader = await command.ExecuteReaderAsync();
 
             while (await reader.ReadAsync())
             {
                 // Retrieve data from the column
-                string value = reader.GetString(0); // Adjust the index if necessary
+                string value = reader.GetString(0);
 
                 data.Add(value);
-            }*/
+            }
             data.Add("Freezing");
 
             return data;
