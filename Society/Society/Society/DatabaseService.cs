@@ -7,6 +7,7 @@ namespace Society
     public interface IDatabaseService
     {
         Task<List<string>> GetStringsFromDb();
+        Task AddStringToDb(string value);
     }
     public class DatabaseService: IDatabaseService
     {
@@ -30,8 +31,18 @@ namespace Society
                 data.Add(value);
             }
             data.Add("Freezing");
+            await connection.CloseAsync();
 
             return data;
+        }
+        public async Task AddStringToDb(string value)
+        {
+            using MySqlConnection connection = new MySqlConnection(connectionString);
+            await connection.OpenAsync();
+
+            using MySqlCommand command = new MySqlCommand("INSERT INTO MyTable (MyColumn) VALUES (" + value + ")", connection);
+            using MySqlDataReader reader = await command.ExecuteReaderAsync();
+            await connection.CloseAsync();
         }
     }
 }
