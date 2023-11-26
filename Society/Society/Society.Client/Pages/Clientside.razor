@@ -1,0 +1,56 @@
+﻿@page "/clientside"
+@rendermode InteractiveAuto
+
+<PageTitle>Client side</PageTitle>
+
+<h1>Client-side</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button @ref=ButtonRef class="@myButtonClass" @onclick="ClickButton">Click me</button>
+
+@code
+{
+    // fields
+    string myButtonClass = "";
+    static string redButtonClass = "red-button";
+    static string blueButtonClass = "blue-button";
+
+    ElementReference ButtonRef; // not sure how we can use this
+
+    private int currentCount = 0;
+
+    // methods
+    private void ClickButton()
+    {
+        if (myButtonClass == redButtonClass)
+        {
+            myButtonClass = blueButtonClass;
+        }
+        else
+        {
+            myButtonClass = redButtonClass;
+        }
+
+        currentCount++;
+    }
+
+    protected override void OnInitialized() // runs when the component is rendered, like the unity Start() method
+    {
+        DummyMethod();
+    }
+    void DummyMethod()
+    {
+        myButtonClass = redButtonClass;
+    }
+
+    /*protected override async Task OnInitializedAsync()
+    {
+        await DummyMethod();
+    }*/
+
+    /*private async Task DummyMethod()
+    {
+        return;
+    }*/
+}
