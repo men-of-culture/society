@@ -1,5 +1,4 @@
 #!bin/bash
-
 for i in {1..50};
 do
     /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $SA_PASSWORD -d master -i /database/init.sql
