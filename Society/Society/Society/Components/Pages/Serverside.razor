@@ -84,10 +84,12 @@ else
                 StringValue = strings[index - 1]
             }).ToArray();
         Debug.Print("Table refreshed");
+        //await Task.Delay(2000);
     }
 
     private async Task AddStringToDb()
     {
+        dbStrings = null;
         var stringCount = (await databaseService.GetStringsFromDb()).Count.ToString();
         await databaseService.AddStringToDb(stringCount);
         await RefreshTable();
@@ -95,6 +97,7 @@ else
 
     private async Task ClearDb()
     {
+        dbStrings = null;
         await databaseService.ClearDb();
         await RefreshTable();
     }

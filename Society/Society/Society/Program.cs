@@ -1,5 +1,5 @@
 using Society;
-using Society.Client.Pages;
+//using Society.Client.Pages;
 using Society.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,7 +33,7 @@ app.UseAntiforgery();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
-    .AddInteractiveWebAssemblyRenderMode()
-    .AddAdditionalAssemblies(typeof(Clientside).Assembly);
+    .AddInteractiveWebAssemblyRenderMode();
+    //.AddAdditionalAssemblies(typeof(Clientside).Assembly);
 
 app.Run();
