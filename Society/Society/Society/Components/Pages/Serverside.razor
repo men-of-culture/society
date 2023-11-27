@@ -1,0 +1,118 @@
+﻿@page "/serverside"
+@using System.Diagnostics
+@using SocietyApi
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+@inject IDatabaseService databaseService
+
+<!-- Html start here -->
+<PageTitle>Server-side</PageTitle>
+
+<h1>Server-side</h1>
+
+<p>This component demonstrates showing data.</p>
+
+<button class="@myButtonClass" @onclick="ChangeButton">Change me</button>
+<button @onclick="AddStringToDb">Create row</button>
+<button @onclick="ClearDb">Clear table</button>
+
+@if (dbStrings == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var dbString in dbStrings)
+            {
+                <tr>
+                    <td>@dbString.StringValue</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+            <!-- Html end here -->
+
+<!-- Css start here -->
+<style>
+    .button {
+        color: #fff;
+        background-color: #ff140c;
+    }
+</style>
+            <!-- Css end here -->
+
+<!-- Javascript start here -->
+<script>
+    console.log("js lol");
+</script>
+            <!-- Javascript end here -->
+
+<!-- C# start here -->
+@code {
+    // fields
+    string myButtonClass = "x";
+    static string redButtonClass = "button";
+    static string blueButtonClass = "blue-button";
+    private DBString[]? dbStrings;
+
+    // classes
+    private class DBString
+    {
+        public string? StringValue { get; set; }
+    }
+
+    // methods
+    protected override async Task OnInitializedAsync()
+    {
+        myButtonClass = redButtonClass;
+        await RefreshTable();
+    }
+
+    private async Task RefreshTable()
+    {
+        var strings = await databaseService.GetStringsFromDb();
+        dbStrings = Enumerable.Range(1, strings.Count)
+        .Select(index => new DBString
+            {
+                StringValue = strings[index - 1]
+            }).ToArray();
+        Debug.Print("Table refreshed");
+        //await Task.Delay(2000);
+    }
+
+    private async Task AddStringToDb()
+    {
+        dbStrings = null;
+        var stringCount = (await databaseService.GetStringsFromDb()).Count.ToString();
+        await databaseService.AddStringToDb(stringCount);
+        await RefreshTable();
+    }
+
+    private async Task ClearDb()
+    {
+        dbStrings = null;
+        await databaseService.ClearDb();
+        await RefreshTable();
+    }
+
+    private void ChangeButton()
+    {
+        if (myButtonClass == redButtonClass)
+        {
+            myButtonClass = blueButtonClass;
+        }
+        else
+        {
+            myButtonClass = redButtonClass;
+        }
+    }
+}
+            <!-- C# end here -->
