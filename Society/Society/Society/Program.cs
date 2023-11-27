@@ -11,7 +11,8 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 // Register the service
-builder.Services.AddScoped<IDatabaseService, DatabaseService>();
+builder.Services.AddScoped<IMSSQLDatabaseService, MSSQLDatabaseService>();
+builder.Services.AddScoped<IMySqlDatabaseService, MySqlDatabaseService>();
 
 var app = builder.Build();
 

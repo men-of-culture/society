@@ -4,13 +4,13 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 namespace SocietyApi
 {
-    public interface IDatabaseService
+    public interface IMySqlDatabaseService
     {
         Task<List<string>> GetStringsFromDb();
         Task AddStringToDb(string value);
         Task ClearDb();
     }
-    public class DatabaseService: IDatabaseService
+    public class MySqlDatabaseService: IMySqlDatabaseService
     {
         private readonly string connectionString = "Server=sql8.freemysqlhosting.net;Database=sql8665264;User Id=sql8665264;Password=cqXXVwnqeV;"; // port 3306
 

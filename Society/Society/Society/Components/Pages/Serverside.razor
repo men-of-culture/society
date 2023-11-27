@@ -3,7 +3,8 @@
 @using SocietyApi
 @rendermode InteractiveServer
 @attribute [StreamRendering]
-@inject IDatabaseService databaseService
+@inject IMSSQLDatabaseService mssqlDatabaseService
+@inject IMySqlDatabaseService mysqlDatabaseService
 
 <!-- Html start here -->
 <PageTitle>Server-side</PageTitle>
@@ -78,7 +79,7 @@ else
 
     private async Task RefreshTable()
     {
-        var strings = await databaseService.GetStringsFromDb();
+        var strings = await mssqlDatabaseService.GetStringsFromDb();
         dbStrings = Enumerable.Range(1, strings.Count)
         .Select(index => new DBString
             {
@@ -91,15 +92,15 @@ else
     private async Task AddStringToDb()
     {
         dbStrings = null;
-        var stringCount = (await databaseService.GetStringsFromDb()).Count.ToString();
-        await databaseService.AddStringToDb(stringCount);
+        var stringCount = (await mssqlDatabaseService.GetStringsFromDb()).Count.ToString();
+        await mssqlDatabaseService.AddStringToDb(stringCount);
         await RefreshTable();
     }
 
     private async Task ClearDb()
     {
         dbStrings = null;
-        await databaseService.ClearDb();
+        await mssqlDatabaseService.ClearDb();
         await RefreshTable();
     }
 
