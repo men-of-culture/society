@@ -31,7 +31,7 @@ else
             @foreach (var dbString in dbStrings)
             {
                 <tr>
-                    <td>@dbString.Summary</td>
+                    <td>@dbString.StringValue</td>
                 </tr>
             }
         </tbody>
@@ -61,12 +61,12 @@ else
     string myButtonClass = "x";
     static string redButtonClass = "button";
     static string blueButtonClass = "blue-button";
-    private DBStrings[]? dbStrings;
+    private DBString[]? dbStrings;
 
     // classes
-    private class DBStrings
+    private class DBString
     {
-        public string? Summary { get; set; }
+        public string? StringValue { get; set; }
     }
 
     // methods
@@ -78,10 +78,11 @@ else
 
     private async Task RefreshTable()
     {
-        var summaries = await databaseService.GetStringsFromDb();
-        dbStrings = Enumerable.Range(1, summaries.Count).Select(index => new DBStrings
+        var strings = await databaseService.GetStringsFromDb();
+        dbStrings = Enumerable.Range(1, strings.Count)
+        .Select(index => new DBString
             {
-                Summary = summaries[index - 1]
+                StringValue = strings[index - 1]
             }).ToArray();
         Debug.Print("Table refreshed");
     }
