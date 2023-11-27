@@ -12,8 +12,8 @@
 <p>This component demonstrates showing data.</p>
 
 <button class="@myButtonClass" @onclick="ChangeButton">Change me</button>
-<button @onclick="CreateButton">Create row</button>
-<button @onclick="ClearButton">Clear table</button>
+<button @onclick="AddStringToDb">Create row</button>
+<button @onclick="ClearDb">Clear table</button>
 
 @if (dbStrings == null)
 {
@@ -109,17 +109,6 @@ else
         {
             myButtonClass = redButtonClass;
         }
-        Debug.Print("Clicked");
-    }
-
-    private async Task CreateButton()
-    {
-        await AddStringToDb();
-    }
-
-    private async Task ClearButton()
-    {
-        await ClearDb();
     }
 }
             <!-- C# end here -->
