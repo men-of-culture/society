@@ -11,8 +11,9 @@
 
 <p>This component demonstrates showing data.</p>
 
-<button class="@myButtonClass" @onclick="ClickButton">Click me</button>
-<button @onclick="ClickButtonCreate">@buttonText</button>
+<button class="@myButtonClass" @onclick="ChangeButton">Change me</button>
+<button @onclick="CreateButton">Create row</button>
+<button @onclick="ClearButton">Clear table</button>
 
 @if (dbStrings == null)
 {
@@ -60,11 +61,45 @@ else
     string myButtonClass = "x";
     static string redButtonClass = "button";
     static string blueButtonClass = "blue-button";
-    string buttonText = "Click me";
-    string summary = "Summary";
+    private DBStrings[]? dbStrings;
+
+    // classes
+    private class DBStrings
+    {
+        public string? Summary { get; set; }
+    }
 
     // methods
-    private void ClickButton()
+    protected override async Task OnInitializedAsync()
+    {
+        myButtonClass = redButtonClass;
+        await RefreshTable();
+    }
+
+    private async Task RefreshTable()
+    {
+        var summaries = await databaseService.GetStringsFromDb();
+        dbStrings = Enumerable.Range(1, summaries.Count).Select(index => new DBStrings
+            {
+                Summary = summaries[index - 1]
+            }).ToArray();
+        Debug.Print("Table refreshed");
+    }
+
+    private async Task AddStringToDb()
+    {
+        var stringCount = (await databaseService.GetStringsFromDb()).Count.ToString();
+        await databaseService.AddStringToDb(stringCount);
+        await RefreshTable();
+    }
+
+    private async Task ClearDb()
+    {
+        await databaseService.ClearDb();
+        await RefreshTable();
+    }
+
+    private void ChangeButton()
     {
         if (myButtonClass == redButtonClass)
         {
@@ -76,44 +111,15 @@ else
         }
         Debug.Print("Clicked");
     }
-    private async Task ClickButtonCreate()
+
+    private async Task CreateButton()
     {
         await AddStringToDb();
     }
 
-    private DBStrings[]? dbStrings;
-
-    protected override async Task OnInitializedAsync()
+    private async Task ClearButton()
     {
-        myButtonClass = redButtonClass;
-        var summaries = await GetStringsFromDb();
-        dbStrings = Enumerable.Range(1, summaries.Count).Select(index => new DBStrings
-        {
-            Summary = summaries[index-1]
-        }).ToArray();
-        Debug.Print("Loaded");
-    }
-
-    private class DBStrings
-    {
-        public string? Summary { get; set; }
-    }
-
-    private async Task<List<string>> GetStringsFromDb()
-    {
-        return await databaseService.GetStringsFromDb();
-    }
-
-    private async Task AddStringToDb()
-    {
-        var strings = (await GetStringsFromDb()).Count.ToString();
-        await databaseService.AddStringToDb(strings);
-
-        var summaries = await GetStringsFromDb();
-        dbStrings = Enumerable.Range(1, summaries.Count).Select(index => new DBStrings
-        {
-            Summary = summaries[index - 1]
-        }).ToArray();
+        await ClearDb();
     }
 }
             <!-- C# end here -->
