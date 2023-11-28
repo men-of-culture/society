@@ -1,17 +1,14 @@
-﻿@page "/serverside"
+﻿@page "/userlist"
 @using System.Diagnostics
-@using SocietyApi
 @rendermode InteractiveServer
 @attribute [StreamRendering]
 @inject IMSSQLDatabaseService mssqlDatabaseService
 @inject IMySqlDatabaseService mysqlDatabaseService
 
 <!-- Html start here -->
-<PageTitle>Server-side</PageTitle>
+<PageTitle>Userlist</PageTitle>
 
-<h1>Server-side</h1>
-
-<p>This component demonstrates showing data.</p>
+<h1>Userlist</h1>
 
 <button class="@myButtonClass" @onclick="ChangeButton">Change me</button>
 <button @onclick="AddStringToDb">Create row</button>
@@ -85,8 +82,6 @@ else
             {
                 StringValue = strings[index - 1]
             }).ToArray();
-        Debug.Print("Table refreshed");
-        //await Task.Delay(2000);
     }
 
     private async Task AddStringToDb()

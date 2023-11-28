@@ -18,11 +18,11 @@ namespace Society
         {
             var data = new List<string>();
 
-            using SqlConnection connection = new SqlConnection(connectionString); // prepare connection
+            using SqlConnection connection = new SqlConnection(connectionString);
             await connection.OpenAsync();
 
-            using SqlCommand command = new SqlCommand("SELECT MyColumn FROM MyTable", connection); // prepare command
-            using SqlDataReader reader = await command.ExecuteReaderAsync(); // execute command
+            using SqlCommand command = new SqlCommand("SELECT MyColumn FROM MyTable", connection);
+            using SqlDataReader reader = await command.ExecuteReaderAsync();
 
             while (await reader.ReadAsync())
             {
@@ -34,23 +34,25 @@ namespace Society
 
             return data;
         }
-        public async Task AddStringToDb(string value)
+
+        public async Task QueryToDb(string query)
         {
-            using SqlConnection connection = new SqlConnection(connectionString);
+            using SqlConnection connection = new SqlConnection(connectionString); // prepare connection
             await connection.OpenAsync();
 
-            using SqlCommand command = new SqlCommand("INSERT INTO MyTable (MyColumn) VALUES (" + value + ")", connection);
-            using SqlDataReader reader = await command.ExecuteReaderAsync();
+            using SqlCommand command = new SqlCommand(query, connection); // prepare command
+            using SqlDataReader reader = await command.ExecuteReaderAsync(); // execute command
             await connection.CloseAsync();
         }
+
+        public async Task AddStringToDb(string value)
+        {
+            await QueryToDb("INSERT INTO MyTable (MyColumn) VALUES (" + value + ")");
+        }
+
         public async Task ClearDb()
         {
-            using SqlConnection connection = new SqlConnection(connectionString);
-            await connection.OpenAsync();
-
-            using SqlCommand command = new SqlCommand("TRUNCATE TABLE MyTable", connection);
-            using SqlDataReader reader = await command.ExecuteReaderAsync();
-            await connection.CloseAsync();
+            await QueryToDb("TRUNCATE TABLE MyTable");
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
-namespace SocietyApi
+namespace Society
 {
     public interface IMySqlDatabaseService
     {
