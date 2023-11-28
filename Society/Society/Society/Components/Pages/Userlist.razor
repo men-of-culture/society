@@ -1,16 +1,14 @@
-﻿@page "/serverside"
+﻿@page "/userlist"
 @using System.Diagnostics
-@using SocietyApi
 @rendermode InteractiveServer
 @attribute [StreamRendering]
-@inject IDatabaseService databaseService
+@inject IMSSQLDatabaseService mssqlDatabaseService
+@inject IMySqlDatabaseService mysqlDatabaseService
 
 <!-- Html start here -->
-<PageTitle>Server-side</PageTitle>
+<PageTitle>Userlist</PageTitle>
 
-<h1>Server-side</h1>
-
-<p>This component demonstrates showing data.</p>
+<h1>Userlist</h1>
 
 <button class="@myButtonClass" @onclick="ChangeButton">Change me</button>
 <button @onclick="AddStringToDb">Create row</button>
@@ -78,28 +76,26 @@ else
 
     private async Task RefreshTable()
     {
-        var strings = await databaseService.GetStringsFromDb();
+        var strings = await mssqlDatabaseService.GetStringsFromDb();
         dbStrings = Enumerable.Range(1, strings.Count)
         .Select(index => new DBString
             {
                 StringValue = strings[index - 1]
             }).ToArray();
-        Debug.Print("Table refreshed");
-        //await Task.Delay(2000);
     }
 
     private async Task AddStringToDb()
     {
         dbStrings = null;
-        var stringCount = (await databaseService.GetStringsFromDb()).Count.ToString();
-        await databaseService.AddStringToDb(stringCount);
+        var stringCount = (await mssqlDatabaseService.GetStringsFromDb()).Count.ToString();
+        await mssqlDatabaseService.AddStringToDb(stringCount);
         await RefreshTable();
     }
 
     private async Task ClearDb()
     {
         dbStrings = null;
-        await databaseService.ClearDb();
+        await mssqlDatabaseService.ClearDb();
         await RefreshTable();
     }
 
