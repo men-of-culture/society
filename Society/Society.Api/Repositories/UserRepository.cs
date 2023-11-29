@@ -14,7 +14,7 @@ namespace Society.Api.Repositories
 
         public User GetById(Guid id)
         {
-            return _context.User.Include(u => u.Friends).ThenInclude(f => f.UserFriend).FirstOrDefault(u => u.Id == id);
+            return _context.User.Find(id)!;
         }
 
         public IEnumerable<User> GetAll()
@@ -24,17 +24,21 @@ namespace Society.Api.Repositories
 
         public void Add(User model)
         {
-            throw new NotImplementedException();
+            _context.User.Add(model);
+            _context.SaveChanges();
         }
 
         public void Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var user = _context.User.Find(id);
+            _context.User.Remove(user!);
+            _context.SaveChanges();
         }
 
         public void Update(User model)
         {
-            throw new NotImplementedException();
+            _context.Update(model);
+            _context.SaveChanges();
         }
     }
 }

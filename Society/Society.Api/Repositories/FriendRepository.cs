@@ -1,15 +1,18 @@
-﻿using Society.Api.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Society.Api.Models;
 
 namespace Society.Api.Repositories
 {
     public class FriendRepository : IRepository<Friend>
     {
-        public void Add(Friend model)
+        private readonly DatabaseContext _context;
+
+        public FriendRepository(DatabaseContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public void Delete(Guid id)
+        public Friend GetById(Guid id)
         {
             throw new NotImplementedException();
         }
@@ -19,7 +22,12 @@ namespace Society.Api.Repositories
             throw new NotImplementedException();
         }
 
-        public Friend GetById(Guid id)
+        public void Add(Friend model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(Guid id)
         {
             throw new NotImplementedException();
         }
