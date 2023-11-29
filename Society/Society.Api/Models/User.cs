@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.ObjectModel;
+using System.Text.Json.Serialization;
 
 namespace Society.Api.Models
 {
@@ -9,7 +10,7 @@ namespace Society.Api.Models
         public string Password { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-        public byte[]? Image { get; set; }
-        public ICollection<Friend>? Friends { get; set; }
+        public byte[] Image { get; set; } = new byte[0];
+        public ICollection<Friend> Friends { get; set; } = new Collection<Friend>();
     }
 }

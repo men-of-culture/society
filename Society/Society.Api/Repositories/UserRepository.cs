@@ -13,8 +13,8 @@ namespace Society.Api.Repositories
         }
 
         public User GetById(Guid id)
-        {
-            return _context.User.Find(id)!;
+        {   
+            return _context.User.Include(u => u.Friends).ThenInclude(f => f.UserFriend).FirstOrDefault(u => u.Id == id)!;
         }
 
         public IEnumerable<User> GetAll()
