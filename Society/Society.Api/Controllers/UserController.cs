@@ -18,7 +18,26 @@ namespace Society.Api.Controllers
         [HttpGet("{id}")]
         public ActionResult<User> Get(Guid id)
         {
-            return _repository.GetById(id);
+            //var user = _repository.GetById(id);
+
+            //var UserDto = new UserDto
+            //{
+            //    Id = user.Id,
+            //    Name = user.Name,
+            //    Email = user.Email,
+            //    Password = user.Password,
+            //    Description = user.Description,
+            //    Image = user.Image,
+            //    Friends = user.Friends.Select(f => new FriendDto
+            //    {
+            //        UserId = f.UserFriend.userid,
+
+            //    }).ToList()
+            //};
+
+
+
+            return Ok();
         }
 
         [HttpGet]

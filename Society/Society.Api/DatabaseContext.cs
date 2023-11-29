@@ -5,20 +5,22 @@ namespace Society.Api
 {
     public class DatabaseContext : DbContext
     {
-        private readonly IConfiguration _configuration;
-        public DatabaseContext(DbContextOptions<DatabaseContext> options, IConfiguration configuration) : base(options)
-        {
-            _configuration = configuration;
-        }
+        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
         public DbSet<User> User { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public DbSet<Friend> Friend { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer(_configuration.GetConnectionString("SqlDbConnection"));
-            }
+            //modelBuilder.Entity<Friend>().ToTable("Friend");
+            //modelBuilder.Entity<User>().HasMany(x => x.Friends).WithMany().HasForeignKey(f => f.UserId);
+
+            modelBuilder.Entity<Friend>().HasKey(f => new { f.UserId, f.FriendId });
+
+            modelBuilder.Entity<Friend>().HasOne(f => f.User).WithMany(u => u.Friends).HasForeignKey(f => f.UserId).OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Friend>().HasOne(f => f.UserFriend).WithMany().HasForeignKey(f => f.FriendId).OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
