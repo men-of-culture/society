@@ -34,12 +34,10 @@ BEGIN
 
     WHILE @@FETCH_STATUS = 0
     BEGIN
-        INSERT INTO [dbo].[Friend] ([UserId], [FriendId], [FriendName], [FriendImage])
+        INSERT INTO [dbo].[Friend] ([UserId], [FriendId])
         VALUES (
             @value,
-            @friendId,
-            'user' + CONVERT(VARCHAR(MAX), @friendId),
-            '');
+            @friendId);
         FETCH NEXT FROM db_cursor1 INTO @friendId
     END;
     CLOSE db_cursor1;
