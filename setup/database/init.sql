@@ -29,8 +29,6 @@ GO
 CREATE TABLE [dbo].[Friend] (
   [UserId] UNIQUEIDENTIFIER,
   [FriendId] UNIQUEIDENTIFIER,
-  [FriendName] NVARCHAR(100),
-  [FriendImage] IMAGE
   FOREIGN KEY ([UserId]) REFERENCES [dbo].[User](Id),
   FOREIGN KEY ([FriendId]) REFERENCES [dbo].[User](Id),
 );
