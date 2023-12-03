@@ -9,3 +9,12 @@
 @using Society
 @using Society.Client
 @using Society.Components
+
+@using System.Text.Json
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@using static Society.Components.SharedClientVars.SharedVariables
+@using Shared.Models
+@using System.Text.Json.Serialization
+
+@inject ProtectedSessionStorage ProtectedSessionStore
+@inject NavigationManager NavManager
