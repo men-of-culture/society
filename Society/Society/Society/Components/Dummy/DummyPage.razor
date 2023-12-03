@@ -1,0 +1,68 @@
+﻿@page "/dummy"
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+<!-- Html start here -->
+<PageTitle>Dummy</PageTitle>
+
+<div class="pagetitle">
+    <h1>
+        Dummy
+    </h1>
+    <button @onclick="ButtonClick">Load</button>
+</div>
+<!--<button onclick="clicked();">Login</button>-->
+@if (isLoading == true)
+{
+    <div class="loading">Loading...</div>
+}
+else
+{
+    <div class="loading">Done</div>
+}
+<!-- Html end here -->
+<!-- Css start here -->
+<style>
+    .button {
+        color: #fff;
+        background-color: #ff140c;
+    }
+</style>
+<!-- Css end here -->
+<!-- Javascript start here -->
+<!--<script>
+    console.log("js lol");
+
+    let data = sessionStorage.getItem("key");
+
+    function clicked() {
+        var theInput = document.getElementById("input").value;
+        console.log(theInput);
+        sessionStorage.setItem("login", theInput);
+        window.location.href = 'https://localhost:7282/profile';
+    }
+</script>-->
+<!-- Javascript end here -->
+<!-- C# start here -->
+@code {
+    bool? isLoading = true;
+
+    async void ButtonClick()
+    {
+        isLoading = true;
+        await Task.Delay(2000);
+        isLoading = false;
+        StateHasChanged();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender) // kører første gang komponentet loades
+        {
+            await Task.Delay(2000);
+            isLoading = false;
+            StateHasChanged(); // forcer komponentet til at loade igen
+        }
+    }
+}
+<!-- C# end here -->
