@@ -1,5 +1,3 @@
-using Society;
-//using Society.Client.Pages;
 using Society.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,9 +7,14 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
 
-// Register the service
-builder.Services.AddScoped<IMSSQLDatabaseService, MSSQLDatabaseService>();
-builder.Services.AddScoped<IMySqlDatabaseService, MySqlDatabaseService>();
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromSeconds(100);  //you can change the session expired time.  
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
@@ -31,6 +34,8 @@ app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 app.UseAntiforgery();
+
+app.UseSession();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
