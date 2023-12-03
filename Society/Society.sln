@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Society.Client", "Society\S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Society.Api", "Society.Api\Society.Api.csproj", "{D9331125-66CC-464D-A308-6EA2F3F0D6B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Society.Shared", "Society.Shared\Society.Shared.csproj", "{28F8493D-C676-410B-A264-181FD6B878E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Society.Shared", "Society.Shared\Society.Shared.csproj", "{28F8493D-C676-410B-A264-181FD6B878E4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
