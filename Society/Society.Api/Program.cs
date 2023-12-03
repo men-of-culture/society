@@ -1,8 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Society.Api;
-using Society.Api.Models;
 using Society.Api.Repositories;
-using System.Security.Cryptography.Xml;
+using Society.Shared.Models;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
