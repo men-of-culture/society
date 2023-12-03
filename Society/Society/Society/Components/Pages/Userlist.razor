@@ -1,114 +1,68 @@
 ﻿@page "/userlist"
-@using System.Diagnostics
 @rendermode InteractiveServer
 @attribute [StreamRendering]
-@inject IMSSQLDatabaseService mssqlDatabaseService
-@inject IMySqlDatabaseService mysqlDatabaseService
 
-<!-- Html start here -->
 <PageTitle>Userlist</PageTitle>
 
-<h1>Userlist</h1>
+<div class="pagetitle">
+    <h1>
+        Userlist
+    </h1>
+    <button @onclick="RefreshButton">Magic</button>
+</div>
 
-<button class="@myButtonClass" @onclick="ChangeButton">Change me</button>
-<button @onclick="AddStringToDb">Create row</button>
-<button @onclick="ClearDb">Clear table</button>
 
-@if (dbStrings == null)
+@if (users == null || users == new List<User>())
 {
-    <p><em>Loading...</em></p>
+    <div class="loading">Loading...</div>
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var dbString in dbStrings)
-            {
-                <tr>
-                    <td>@dbString.StringValue</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-            <!-- Html end here -->
-
-<!-- Css start here -->
-<style>
-    .button {
-        color: #fff;
-        background-color: #ff140c;
-    }
-</style>
-            <!-- Css end here -->
-
-<!-- Javascript start here -->
-<script>
-    console.log("js lol");
-</script>
-            <!-- Javascript end here -->
-
-<!-- C# start here -->
-@code {
-    // fields
-    string myButtonClass = "x";
-    static string redButtonClass = "button";
-    static string blueButtonClass = "blue-button";
-    private DBString[]? dbStrings;
-
-    // classes
-    private class DBString
-    {
-        public string? StringValue { get; set; }
-    }
-
-    // methods
-    protected override async Task OnInitializedAsync()
-    {
-        myButtonClass = redButtonClass;
-        await RefreshTable();
-    }
-
-    private async Task RefreshTable()
-    {
-        var strings = await mssqlDatabaseService.GetStringsFromDb();
-        dbStrings = Enumerable.Range(1, strings.Count)
-        .Select(index => new DBString
-            {
-                StringValue = strings[index - 1]
-            }).ToArray();
-    }
-
-    private async Task AddStringToDb()
-    {
-        dbStrings = null;
-        var stringCount = (await mssqlDatabaseService.GetStringsFromDb()).Count.ToString();
-        await mssqlDatabaseService.AddStringToDb(stringCount);
-        await RefreshTable();
-    }
-
-    private async Task ClearDb()
-    {
-        dbStrings = null;
-        await mssqlDatabaseService.ClearDb();
-        await RefreshTable();
-    }
-
-    private void ChangeButton()
-    {
-        if (myButtonClass == redButtonClass)
+    <div class="userlist">
+        @foreach (var user in users)
         {
-            myButtonClass = blueButtonClass;
+            <div class="usercontainer">
+                <div class="usernamecontainer">
+                    <div class="username"><b>Name: </b>@user.Name</div>
+                    <div class="userimage"><b>Imagecontainer</b><br />@user.Image</div>
+                </div>
+                <div class="userdescription"><b>Description: </b><p>@user.Description</p></div>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    private HttpResponseMessage response = new();
+    private IEnumerable<User>? users = new List<User>();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await RefreshList();
+            StateHasChanged();
+        }
+    }
+
+    private async Task RefreshButton()
+    {
+        users = new List<User>();
+        await RefreshList();
+    }
+
+    private async Task RefreshList()
+    {
+        HttpClient httpClient = new HttpClient();
+        response = await httpClient.GetAsync(API_URL + "api/User/");
+        if (response.IsSuccessStatusCode)
+        {
+            users = JsonConvert.DeserializeObject<IEnumerable<User>>(await response.Content.ReadAsStringAsync()) ?? new List<User>();
         }
         else
         {
-            myButtonClass = redButtonClass;
+            // exception to show in frontend
         }
+        httpClient.Dispose();
     }
 }
-            <!-- C# end here -->

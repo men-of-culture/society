@@ -63,3 +63,104 @@ h1:focus {
     background-color: #0066ff;
     border-color: #1861ac;
 }
+
+.button {
+    color: #fff;
+    background-color: #ff140c;
+}
+
+.pagetitle {
+    margin: auto;
+    text-align: center;
+    border-bottom: 2px dashed black;
+    padding-bottom: 20px;
+    margin-bottom: 50px;
+}
+
+.loading {
+    text-align: center;
+}
+
+.userlist {
+    align-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    flex: 1 0 21%;
+    justify-content: center;
+}
+
+.usercontainer {
+    display: flex;
+    border: 2px dashed black;
+    margin: 20px 20px 20px 20px;
+    max-width: 600px;
+}
+
+.usernamecontainer {
+    display: inline-block;
+}
+
+.username {
+    width: 200px;
+    display: block;
+    border: 2px dashed black;
+}
+
+.userdescription {
+    width: 100%;
+    display: inline-block;
+    border: 2px dashed black;
+    overflow-y: scroll;
+    max-height: 228px;
+}
+
+.userimage {
+    width: 200px;
+    height: 200px;
+    display: block;
+    border: 2px dashed black;
+    overflow: auto;
+}
+
+.pagetitle {
+    margin: auto;
+    text-align: center;
+    border-bottom: 2px dashed black;
+    padding-bottom: 20px;
+    margin-bottom: 50px;
+}
+
+.content {
+    margin: auto;
+    text-align: center;
+}
+
+.friendlistcontainer {
+    display: flex;
+    border: 2px dashed black;
+    margin: 20px 20px 20px 20px;
+    max-width: 600px;
+    height: 100%;
+    flex-direction: column;
+}
+
+.friendcontainer {
+    display: flex;
+}
+
+.friendimage {
+    width: 50px;
+    height: 50px;
+    display: block;
+    border: 2px dashed black;
+    overflow: auto;
+}
+
+.friendname {
+    width: 200px;
+    display: flex;
+    border: 2px dashed black;
+    align-items: center;
+    justify-content: left;
+}
