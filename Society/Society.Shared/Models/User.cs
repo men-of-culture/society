@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
-using System.Text.Json.Serialization;
 
-namespace Society.Api.Models
+namespace Society.Shared.Models
 {
     public class User
     {

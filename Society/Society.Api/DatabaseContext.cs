@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Society.Api.Models;
+using Society.Shared.Models;
 
 namespace Society.Api
 {

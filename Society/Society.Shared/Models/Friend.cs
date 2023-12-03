@@ -1,6 +1,7 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.ObjectModel;
+using System.Text.Json.Serialization;
 
-namespace Society.Api.Models
+namespace Society.Shared.Models
 {
     public class Friend
     {
@@ -12,7 +13,7 @@ namespace Society.Api.Models
 
         [JsonIgnore]
         public Guid FriendId { get; set; }
-        
+
         public User UserFriend { get; set; } = new();
     }
 }

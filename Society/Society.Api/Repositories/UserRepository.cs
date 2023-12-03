@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Society.Api.Models;
+using Society.Shared.Models;
 
 namespace Society.Api.Repositories
 {
@@ -19,6 +19,7 @@ namespace Society.Api.Repositories
 
         public IEnumerable<User> GetAll()
         {
+            //.Include(u => u.Friends).ThenInclude(f => f.UserFriend).AsNoTracking()
             return _context.User.ToList();
         }
 

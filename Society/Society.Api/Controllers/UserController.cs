@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using Society.Api.Models;
 using Society.Api.Repositories;
+using Society.Shared.Models;
 
 namespace Society.Api.Controllers
 {
@@ -25,7 +25,7 @@ namespace Society.Api.Controllers
                 return NotFound($"User with id: {id} was not found");
             }
 
-            return _repository.GetById(id);
+            return Ok(_repository.GetById(id));
         }
 
         [HttpGet]
@@ -37,7 +37,7 @@ namespace Society.Api.Controllers
                 return NotFound($"No users were found");
             }
 
-            return users;
+            return Ok(users);
         }
 
         [HttpPost("{user}")]
