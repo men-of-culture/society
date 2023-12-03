@@ -1,0 +1,43 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+<PageTitle>Login</PageTitle>
+
+<h1 class="pagetitle">Login</h1>
+<div class="content">
+    <input type="text" placeholder="Enter user GUID" id="input" @bind-value="@input" />
+    <button @onclick="SetLogin">Login</button>
+    <button @onclick="RandomProfile">Random</button>
+</div>
+
+@code {
+    private string input = "";
+    private User? user = new();
+    private IEnumerable<User>? users = new List<User>();
+    private HttpResponseMessage response = new();
+
+    async Task SetLogin()
+    {
+        // make input check and prompt if invalid (spaces or periods)
+        await ProtectedSessionStore.SetAsync("login", input);
+        NavManager.NavigateTo("/profile");
+    }
+
+    async Task RandomProfile()
+    {
+        // get random user guid
+        HttpClient httpClient = new HttpClient();
+        response = await httpClient.GetAsync(API_URL + "api/User/");
+        users = JsonConvert.DeserializeObject<IEnumerable<User>>(await response.Content.ReadAsStringAsync()) ?? new List<User>();
+        httpClient.Dispose();
+        if (users != null)
+            user = users.First();
+        if (user != null)
+            input = user.Id.ToString();
+
+        // make input check and prompt if invalid (spaces or periods)
+        await ProtectedSessionStore.SetAsync("login", input);
+        NavManager.NavigateTo("/profile");
+    }
+}

@@ -1,7 +1,67 @@
-﻿@page "/"
+﻿@page "/profile"
+@rendermode InteractiveServer
+@attribute [StreamRendering]
 
 <PageTitle>Profile</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="pagetitle">
+    <h1>
+        Profile
+    </h1>
+</div>
 
-Welcome to your new app.
+@if (userguid == null && user == null)
+{
+    <div class="loading">Loading...</div>
+}
+else if (userguid != null && (user == null || user.Name == ""))
+{
+    <div class="loading">Invalid login</div>
+}
+else if (user != null && user.Name != "")
+{
+    <div class="userlist">
+        <div class="usercontainer">
+            <div class="usernamecontainer">
+                <div class="username"><b>Name: </b>@user.Name</div>
+                <div class="userimage"><b>Imagecontainer</b><br />@user.Image</div>
+            </div>
+            <div class="userdescription"><b>Description: </b><p>@user.Description</p></div>
+        </div>
+        <div class="friendlistcontainer">
+            <b>Friendlist</b>
+            @foreach (var friend in user.Friends)
+            {
+                <div class="friendcontainer">
+                    <div class="friendimage"><b>Imagecontainer</b><br />@friend.UserFriend.Image</div>
+                    <div class="friendname"><b>Name: </b>@friend.UserFriend.Name</div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@code {
+    private User? user = new();
+    string? userguid;
+    private HttpResponseMessage response = new();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            userguid = (await ProtectedSessionStore.GetAsync<string>("login")).Value;
+            await RefreshList();
+
+            StateHasChanged();
+        }
+    }
+
+    private async Task RefreshList()
+    {
+        HttpClient httpClient = new HttpClient();
+        response = await httpClient.GetAsync(API_URL + "api/User/" + userguid);
+        user = JsonConvert.DeserializeObject<User>(await response.Content.ReadAsStringAsync()) ?? new User();
+        httpClient.Dispose();
+    }
+}
