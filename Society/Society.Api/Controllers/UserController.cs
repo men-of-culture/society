@@ -25,7 +25,7 @@ namespace Society.Api.Controllers
                 return NotFound($"User with id: {id} was not found");
             }
 
-            return Ok(_repository.GetById(id));
+            return Ok(user);
         }
 
         [HttpGet]
