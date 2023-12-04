@@ -12,7 +12,7 @@
 </div>
 
 
-@if (users == null || users == new List<User>())
+@if (users == null || !users.Any())
 {
     <div class="loading">Loading...</div>
 }
@@ -21,13 +21,13 @@ else
     <div class="userlist">
         @foreach (var user in users)
         {
-            <div class="usercontainer">
+            <button class="usercontainer" @onclick="(() => ClickUser(user.Id.ToString()))">
                 <div class="usernamecontainer">
                     <div class="username"><b>Name: </b>@user.Name</div>
                     <div class="userimage"><b>Imagecontainer</b><br />@user.Image</div>
                 </div>
                 <div class="userdescription"><b>Description: </b><p>@user.Description</p></div>
-            </div>
+            </button>
         }
     </div>
 }
@@ -35,6 +35,14 @@ else
 @code {
     private HttpResponseMessage response = new();
     private IEnumerable<User>? users = new List<User>();
+    private User? user = new();
+
+    private void ClickUser(string userId)
+    {
+        profileGuid = userId;
+
+        NavManager.NavigateTo("/userprofile");
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

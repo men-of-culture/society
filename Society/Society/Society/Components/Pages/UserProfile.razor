@@ -1,4 +1,4 @@
-﻿@page "/profile"
+﻿@page "/userprofile"
 @rendermode InteractiveServer
 @attribute [StreamRendering]
 
@@ -6,20 +6,15 @@
 
 <div class="pagetitle">
     <h1>
-        Profile
+        UserProfile
     </h1>
 </div>
 
-@if (userguid == null && (user == null || user.Name == ""))
+@if (user == null || user.Name == "")
 {
     <div class="loading">Loading...</div>
 }
-else if (userguid != null && (user == null || user.Name == ""))
-{
-    <div class="loading">Invalid login</div>
-}
-else if (user != null && user.Name != "")
-{
+else{
     <div class="userlist">
         <div class="usercontainer">
             <div class="usernamecontainer">
@@ -28,36 +23,27 @@ else if (user != null && user.Name != "")
             </div>
             <div class="userdescription"><b>Description: </b><p>@user.Description</p></div>
         </div>
-        <div class="friendlistcontainer">
-            <b>Friendlist</b>
-            @foreach (var friend in user.Friends)
-            {
-                <button class="friendcontainer" @onclick="(() => ClickFriend(friend.UserFriend.Id.ToString()))">
-                <div class="friendimage"><b>Imagecontainer</b><br />@friend.UserFriend.Image</div>
-                <div class="friendname"><b>Name: </b>@friend.UserFriend.Name</div>
-                </button>
-            }
-        </div>
     </div>
 }
+
 
 @code {
     private User? user = new();
     string? userguid;
     private HttpResponseMessage response = new();
 
-    private void ClickFriend(string friendId)
+    private async Task ClickFriend(string friendId)
     {
-        profileGuid = friendId;
-
-        NavManager.NavigateTo("/userprofile");
+        HttpClient httpClient = new HttpClient();
+        response = await httpClient.GetAsync(API_URL + "api/User/" + friendId);
+        user = JsonConvert.DeserializeObject<User>(await response.Content.ReadAsStringAsync()) ?? new User();
+        httpClient.Dispose();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            userguid = (await ProtectedSessionStore.GetAsync<string>("login")).Value;
             await RefreshList();
             StateHasChanged();
         }
@@ -66,7 +52,7 @@ else if (user != null && user.Name != "")
     private async Task RefreshList()
     {
         HttpClient httpClient = new HttpClient();
-        response = await httpClient.GetAsync(API_URL + "api/User/" + userguid);
+        response = await httpClient.GetAsync(API_URL + "api/User/" + profileGuid);
         user = JsonConvert.DeserializeObject<User>(await response.Content.ReadAsStringAsync()) ?? new User();
         httpClient.Dispose();
     }
