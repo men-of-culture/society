@@ -1,6 +1,6 @@
 ﻿using Society.Shared.Models;
 
-namespace Society.Components.Pages
+namespace Society.Components
 {
     public class SharedPageVariables
     {
