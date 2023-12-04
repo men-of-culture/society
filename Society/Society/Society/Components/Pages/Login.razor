@@ -28,13 +28,14 @@
         {
             await ProtectedSessionStore.SetAsync("login", "invalid");
         }
-
+        myUser = new User();
         NavManager.NavigateTo("/profile");
     }
 
     async Task RandomProfile()
     {
         // get random user guid
+        myUser = new User();
         HttpClient httpClient = new HttpClient();
         response = await httpClient.GetAsync(API_URL + "api/User/");
         users = JsonConvert.DeserializeObject<IEnumerable<User>>(await response.Content.ReadAsStringAsync()) ?? new List<User>();

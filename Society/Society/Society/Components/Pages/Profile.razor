@@ -10,27 +10,27 @@
     </h1>
 </div>
 
-@if (userguid == null && (user == null || user.Name == ""))
+@if (userguid == null && (myUser == null || myUser.Name == ""))
 {
     <div class="loading">Loading...</div>
 }
-else if (userguid != null && (user == null || user.Name == ""))
+else if (userguid != null && (myUser == null || myUser.Name == ""))
 {
     <div class="loading">Invalid login</div>
 }
-else if (user != null && user.Name != "")
+else if (myUser != null && myUser.Name != "")
 {
     <div class="userlist">
         <div class="usercontainer">
             <div class="usernamecontainer">
-                <div class="username"><b>Name: </b>@user.Name</div>
-                <div class="userimage"><b>Imagecontainer</b><br />@user.Image</div>
+                <div class="username"><b>Name: </b>@myUser.Name</div>
+                <div class="userimage"><b>Imagecontainer</b><br />@myUser.Image</div>
             </div>
-            <div class="userdescription"><b>Description: </b><p>@user.Description</p></div>
+            <div class="userdescription"><b>Description: </b><p>@myUser.Description</p></div>
         </div>
         <div class="friendlistcontainer">
             <b>Friendlist</b>
-            @foreach (var friend in user.Friends)
+            @foreach (var friend in myUser.Friends)
             {
                 <button class="friendcontainer" @onclick="(() => ClickFriend(friend.UserFriend.Id.ToString()))">
                 <div class="friendimage"><b>Imagecontainer</b><br />@friend.UserFriend.Image</div>
@@ -65,9 +65,10 @@ else if (user != null && user.Name != "")
 
     private async Task RefreshList()
     {
+        if (myUser.Id.ToString() == userguid) return;
         HttpClient httpClient = new HttpClient();
         response = await httpClient.GetAsync(API_URL + "api/User/" + userguid);
-        user = JsonConvert.DeserializeObject<User>(await response.Content.ReadAsStringAsync()) ?? new User();
+        myUser = JsonConvert.DeserializeObject<User>(await response.Content.ReadAsStringAsync()) ?? new User();
         httpClient.Dispose();
     }
 }
