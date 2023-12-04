@@ -20,7 +20,15 @@
     async Task SetLogin()
     {
         // make input check and prompt if invalid (spaces or periods)
-        await ProtectedSessionStore.SetAsync("login", input);
+        if (Regex.IsMatch(input, @"^[a-zA-Z0-9_]+$"))
+        {
+            await ProtectedSessionStore.SetAsync("login", input);
+        }
+        else
+        {
+            await ProtectedSessionStore.SetAsync("login", "invalid");
+        }
+
         NavManager.NavigateTo("/profile");
     }
 
@@ -31,9 +39,9 @@
         response = await httpClient.GetAsync(API_URL + "api/User/");
         users = JsonConvert.DeserializeObject<IEnumerable<User>>(await response.Content.ReadAsStringAsync()) ?? new List<User>();
         httpClient.Dispose();
-        if (users != null)
+        if (users.Any())
             user = users.First();
-        if (user != null)
+        if (user != null && user.Name != "")
             input = user.Id.ToString();
 
         // make input check and prompt if invalid (spaces or periods)
