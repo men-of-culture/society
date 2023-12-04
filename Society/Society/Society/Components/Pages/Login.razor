@@ -29,7 +29,7 @@
             await ProtectedSessionStore.SetAsync("login", "invalid");
         }
         myUser = new User();
-        NavManager.NavigateTo("/profile");
+        NavManager.NavigateTo("/myprofile");
     }
 
     async Task RandomProfile()
@@ -47,6 +47,6 @@
 
         // make input check and prompt if invalid (spaces or periods)
         await ProtectedSessionStore.SetAsync("login", input);
-        NavManager.NavigateTo("/profile");
+        NavManager.NavigateTo("/myprofile");
     }
 }

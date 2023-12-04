@@ -40,6 +40,5 @@ app.UseSession();
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode();
-    //.AddAdditionalAssemblies(typeof(Clientside).Assembly);
 
 app.Run();
