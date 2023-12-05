@@ -164,3 +164,172 @@ h1:focus {
     align-items: center;
     justify-content: left;
 }
+.sidebar {
+    width: 80px !important;
+    transition: width .3s ease;
+    background-image: linear-gradient(180deg, #000 0%, rgb(54, 62, 77) 110%) !important;
+    /*background-image: linear-gradient(180deg, rgb(89, 133, 215) 0%, #000 50%) !important;*/
+}
+.sidebar:hover {
+    width: 150px !important;
+}
+
+
+.nav-scrollable{
+    overflow: hidden !important;
+}
+/*@keyframes identifier {
+    0% {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}*/
+
+.navbar {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-top: -25px !important;
+}
+.navbar .container-fluid {
+    text-align: center !important;
+    padding: 0 !important;
+    justify-content: center !important;
+}
+.navbar-brand {
+    margin: auto !important;
+    width: 100% !important;
+}
+.sidebar .navbar-brand {
+    font-size: 1rem !important;
+    transition: all .3s ease;
+}
+.sidebar:hover .navbar-brand {
+    font-size: 2rem !important;
+    transform: rotateZ(-5deg);
+}
+
+.sidebar .navbar-brand:hover {
+    color: lightskyblue;
+    transform: rotateZ(5deg);
+}
+
+@media (min-width: 641px) {
+    .nav-item {
+        padding: 0 !important;
+    }
+    .nav-link {
+        padding: 0 !important;
+        justify-content: left !important;
+        height: 5rem !important;
+    }
+
+    .sidebar .navicon {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 20px !important;
+        padding: 14px !important;
+        margin-left: 25px !important;
+        transition: all .3s ease;
+    }
+    .sidebar .navtitle {
+        transition: all .3s ease;
+        width: 0px !important;
+        text-align: center;
+        font-size: 20px;
+        overflow: hidden;
+        opacity: 0 !important;
+        transform: translateX(90px);
+        font-size: 0px;
+    }
+
+    .sidebar:hover div .navicon {
+        padding: 10px !important;
+        margin-left: 20px !important;
+        margin-right: -10px !important;
+        /*transform: rotateZ(360deg);*/
+        animation: navicon .5s linear;
+    }
+    .sidebar:hover .navtitle {
+        width: 100% !important;
+        opacity: 1 !important;
+        transform: translateX(0px);
+        overflow: hidden;
+        font-size: 20px;
+    }
+
+    @keyframes navicon {
+        0% {
+            transform: rotateZ(0);
+        }
+
+        25% {
+            transform: rotateZ(30deg);
+        }
+
+        75% {
+            transform: rotateZ(-10deg);
+        }
+
+        100% {
+            transform: rotateZ(0);
+        }
+    }
+
+    .sidebar .nav-link:hover .navicon {
+        padding: 0px !important;
+        margin: 0px !important;
+        width: 0 !important;
+        opacity: 0;
+        height: 0px !important;
+    }
+    .sidebar .nav-link:hover .navtitle {
+        text-align: center;
+        font-size: 25px;
+        margin: 0 !important;
+        margin-left: 0px !important;
+        color: lightsteelblue !important;
+        transform: rotateZ(5deg);
+    }
+}
+
+@media (max-width: 640.99px) {
+    .sidebar {
+        width: 100% !important;
+    }
+
+    .sidebar:hover {
+        width: 100% !important;
+    }
+
+    .sidebar > div > div > a.navbar-brand {
+        font-size: 2rem !important;
+    }
+
+    .nav-item {
+        padding: 0 !important;
+    }
+
+    .nav-link {
+        padding: 0 !important;
+        justify-content: center !important;
+        height: 5rem !important;
+    }
+
+    .sidebar .navicon {
+        padding: 14px !important;
+        margin-left: 15px !important;
+        height: 25px !important;
+    }
+    .sidebar .navtitle {
+        text-align: center;
+        font-size: 25px;
+        margin: 0 !important;
+        margin-left: 0px !important;
+        color: lightsteelblue !important;
+    }
+}
