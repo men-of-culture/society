@@ -245,6 +245,7 @@ h1:focus {
         opacity: 0 !important;
         transform: translateX(90px);
         font-size: 0px;
+        /*text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;*/
     }
 
     .sidebar:hover div .navicon {
@@ -260,6 +261,8 @@ h1:focus {
         transform: translateX(0px);
         overflow: hidden;
         font-size: 20px;
+        /*color: lightsteelblue !important;*/
+        color: white;
     }
 
     @keyframes navicon {
@@ -292,14 +295,19 @@ h1:focus {
         font-size: 25px;
         margin: 0 !important;
         margin-left: 0px !important;
-        color: lightsteelblue !important;
         transform: rotateZ(5deg);
+        color: lightskyblue !important;
+        /*text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;*/
+        text-shadow: -2px 2px black !important;
     }
+
+    min-height: 375px;
 }
 
 @media (max-width: 640.99px) {
     .sidebar {
         width: 100% !important;
+        position: fixed !important;
     }
 
     .sidebar:hover {
@@ -331,5 +339,8 @@ h1:focus {
         margin: 0 !important;
         margin-left: 0px !important;
         color: lightsteelblue !important;
+    }
+    .content {
+        margin-top: 58px;
     }
 }
