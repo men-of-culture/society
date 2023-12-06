@@ -154,7 +154,10 @@ h1:focus {
     height: 50px;
     display: block;
     border: 2px dashed black;
-    overflow: auto;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
 
 .friendname {
@@ -163,7 +166,16 @@ h1:focus {
     border: 2px dashed black;
     align-items: center;
     justify-content: left;
+    padding-left: 10px;
 }
+
+.friendcontainer{
+    cursor: pointer;
+    transition: all .3s ease;
+}
+    .friendcontainer:hover {
+        background-color: rgb(210, 221, 236);
+    }
 
 @media (min-width: 641px) {
     .nav-item {

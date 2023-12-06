@@ -32,10 +32,10 @@ else if (user != null && user.Name != "")
             <b>Friendlist</b>
             @foreach (var friend in user.Friends)
             {
-                <button class="friendcontainer" @onclick="(() => ClickFriend(friend.UserFriend.Id.ToString()))">
-                <div class="friendimage"><b>Imagecontainer</b><br />@friend.UserFriend.Image</div>
+                <div class="friendcontainer" @onclick="(() => ClickFriend(friend.UserFriend.Id.ToString()))">
+                <div class="friendimage"><b>Img</b><!--@friend.UserFriend.Image--></div>
                 <div class="friendname"><b>Name: </b>@friend.UserFriend.Name</div>
-                </button>
+                </div>
             }
         </div>
     </div>
