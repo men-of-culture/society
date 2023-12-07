@@ -287,12 +287,16 @@ body div main article.content {
         flex-wrap: wrap;
         align-items: center;
         justify-content: center;
+        overflow: auto;
     }
     .profilelist {
         flex-wrap: wrap !important;
     }
     .profilecontainer {
         margin-right: 30px !important;
+    }
+    .friendname {
+        width: 100%;
     }
 }
 

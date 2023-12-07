@@ -34,7 +34,7 @@ else{
             </div>
         </div>
         <div class="friendlistcontainer" style="">
-            <b>Messages</b><input type="text" style="margin: 20px; margin-top: 0;" /><div class="innerfriendlistcontainer">
+            <b>Messages</b><input type="text" style="margin: 20px; margin-top: 0;" /><div class="innerfriendlistcontainer" style="overflow: auto;">
                 @foreach (var friend in user.Friends)
                 {
                     <div class="friendcontainer" @onclick="(() => ClickFriend(friend.UserFriend.Id.ToString()))">
