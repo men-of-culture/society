@@ -302,6 +302,10 @@ body div main article.content {
 
 /* PROFILE */
 
+.dashedborder {
+    border: 2px black dashed;
+}
+
 .profilelist {
     align-content: center;
     display: flex;

@@ -29,12 +29,12 @@ else{
                 <div class="profiledescription"><b>Description: </b><p>@user.Description</p></div>
             </div>
             <div style="display: flex; flex-direction: row; margin:0 20px">
-                <button style="margin-top: 10px; display: inline-block; width: 50%; margin-right: 5px;">Add friend</button>
-                <button style="margin-top: 10px; display: inline-block; width: 50%; margin-left: 5px;">Remove friend</button>
+                <button class="dashedborder" style="margin-top: 10px; display: inline-block; width: 50%; margin-right: 5px;">Add friend</button>
+                <button class="dashedborder" style="margin-top: 10px; display: inline-block; width: 50%; margin-left: 5px;">Remove friend</button>
             </div>
         </div>
         <div class="friendlistcontainer" style="">
-            <b>Messages</b><input type="text" placeholder="Write a message" style="margin: 20px; margin-top: 0;" /><div class="innerfriendlistcontainer" style="overflow: auto;">
+            <b>Messages</b><div style="display:flex;flex-direction:row;"><input type="text" placeholder="Got something interesting to say?" style="border: 2px black dashed;margin: 20px; margin-top: 0; margin-right: 10px;" /><button style="border: 2px black dashed;margin: 0px 20px 20px 0px !important;">Send</button></div><div class="innerfriendlistcontainer" style="overflow: auto;">
                 @foreach (var friend in user.Friends)
                 {
                     <div class="friendcontainer">
