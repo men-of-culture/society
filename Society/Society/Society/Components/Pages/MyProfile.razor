@@ -20,24 +20,30 @@ else if (userguid != null && (user == null || user.Name == ""))
 }
 else if (user != null && user.Name != "")
 {
-    <div class="userlist">
-        <div class="usercontainer">
-            <div class="usernamecontainer">
-                <div class="username"><b>Name: </b>@user.Name</div>
-                <div class="userimage"><b>Imagecontainer</b><br />@user.Image</div>
-            </div>
-            <div class="userdescription"><b>Description: </b><p>@user.Description</p></div>
-        </div>
-        <div class="friendlistcontainer">
-            <b>Friendlist</b>
-            @foreach (var friend in user.Friends)
-            {
-                <div class="friendcontainer" @onclick="(() => ClickFriend(friend.UserFriend.Id.ToString()))">
-                <div class="friendimage"><b>Img</b><!--@friend.UserFriend.Image--></div>
-                <div class="friendname"><b>Name: </b>@friend.UserFriend.Name</div>
+    <div class="profilelist">
+        
+            <div class="profilecontainer">
+
+            <b>Feed</b>
+                <div class="innerprofilecontainer">
+
+                    <div class="profilenamecontainer">
+                        <div class="profilename"><b>Name: </b>@user.Name</div>
+                        <div class="profileimage"><b>Imagecontainer</b><br />@user.Image</div>
+                    </div>
+                    <div class="profiledescription"><b>Description: </b><p>@user.Description</p></div>
                 </div>
-            }
-        </div>
+            </div>
+            <div class="friendlistcontainer">
+                <b>Friendlist</b>
+                @foreach (var friend in user.Friends)
+                {
+                    <div class="friendcontainer" @onclick="(() => ClickFriend(friend.UserFriend.Id.ToString()))">
+                    <div class="friendimage"><b>Img</b><!--@friend.UserFriend.Image--></div>
+                    <div class="friendname"><b>Name: </b>@friend.UserFriend.Name</div>
+                    </div>
+                }
+            </div>
     </div>
 }
 

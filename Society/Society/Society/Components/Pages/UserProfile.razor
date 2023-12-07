@@ -17,11 +17,20 @@
 else{
     <div class="userlist">
         <div class="usercontainer">
-            <div class="usernamecontainer">
-                <div class="username"><b>Name: </b>@user.Name</div>
-                <div class="userimage"><b>Imagecontainer</b><br />@user.Image</div>
+            <div style="display: flex; flex-direction: row;">
+                <div class="usernamecontainer">
+                    <div class="username"><b>Name: </b>@user.Name</div>
+                    <div class="userimage"><b>Imagecontainer</b><br />@user.Image</div>
+                </div>
+                <div class="userdescription">
+                    <b>Description: </b>
+                    <p>@user.Description</p>
+                </div>
             </div>
-            <div class="userdescription"><b>Description: </b><p>@user.Description</p></div>
+            <div style="display: flex; flex-direction: row;">
+                <button style="margin-top: 10px; display: inline-block; width: 50%; margin-right: 5px;">Add friend</button>
+                <button style="margin-top: 10px; display: inline-block; width: 50%; margin-left: 5px;">Remove friend</button>
+            </div>
         </div>
     </div>
 }
