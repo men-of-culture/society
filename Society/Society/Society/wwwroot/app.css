@@ -208,11 +208,13 @@ body div main article.content {
     width: 200px;
     display: flex;
     border: 2px dashed black;
-    align-items: center;
+    align-items: start;
     justify-content: left;
     padding-left: 10px;
     margin-left: 10px;
     background-color: rgba(200, 200, 200, 0.5);
+    overflow: auto;
+    overflow-wrap: anywhere;
 }
 
 .friendcontainer{
