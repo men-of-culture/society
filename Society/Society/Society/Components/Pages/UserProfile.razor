@@ -37,7 +37,7 @@ else{
             <b>Messages</b><input type="text" style="margin: 20px; margin-top: 0;" /><div class="innerfriendlistcontainer" style="overflow: auto;">
                 @foreach (var friend in user.Friends)
                 {
-                    <div class="friendcontainer" @onclick="(() => ClickFriend(friend.UserFriend.Id.ToString()))">
+                    <div class="friendcontainer">
                         <div class="friendimage"><b>{Name}<br />Img</b><!--@friend.UserFriend.Image--></div>
                         <div class="friendname"><b></b> contentcontentcontentcontent content contentcontent content content</div>
                     </div>
@@ -55,10 +55,7 @@ else{
 
     private async Task ClickFriend(string friendId)
     {
-        HttpClient httpClient = new HttpClient();
-        response = await httpClient.GetAsync(API_URL + "api/User/" + friendId);
-        user = JsonConvert.DeserializeObject<User>(await response.Content.ReadAsStringAsync()) ?? new User();
-        httpClient.Dispose();
+        
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
