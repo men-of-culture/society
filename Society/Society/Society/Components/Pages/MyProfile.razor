@@ -35,7 +35,7 @@ else if (user != null && user.Name != "")
                 </div>
             </div>
             <div class="friendlistcontainer">
-                <b>Friendlist</b>
+            <b>Friendlist</b><div class="innerfriendlistcontainer">
                 @foreach (var friend in user.Friends)
                 {
                     <div class="friendcontainer" @onclick="(() => ClickFriend(friend.UserFriend.Id.ToString()))">
@@ -44,6 +44,7 @@ else if (user != null && user.Name != "")
                     </div>
                 }
             </div>
+        </div>
     </div>
 }
 

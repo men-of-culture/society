@@ -232,6 +232,13 @@ body div main article.content {
         justify-content: left !important;
         height: 5rem !important;
     }
+    .friendlistcontainer {
+        max-height: 500px;
+        overflow: auto;
+        position: fixed;
+        right: 0;
+        top: 65px;
+    }
 }
 
 @media (max-width: 640.99px) {
@@ -257,9 +264,29 @@ body div main article.content {
         margin: auto;
         margin-top: auto;
         margin-top: 20px;
+        position: initial;
+        margin: 30px !important;
+        width: 100%;
+        max-width: none;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        flex-wrap: nowrap;
+        justify-content: unset;
+        display: flex;
+    }
+    .innerfriendlistcontainer {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
     }
     .profilelist {
         flex-wrap: wrap !important;
+    }
+    .profilecontainer {
+        margin-right: 30px !important;
     }
 }
 
@@ -283,6 +310,7 @@ body div main article.content {
     flex-direction: column;
     height: 100%;
     padding-bottom: 20px !important;
+    margin-right: 365px;
 }
     .profilecontainer > b {
         border-bottom: 2px dashed black;
