@@ -238,6 +238,8 @@ body div main article.content {
         position: fixed;
         right: 0;
         top: 65px;
+        height: 85vh !important;
+        max-height: unset;
     }
 }
 
@@ -274,6 +276,8 @@ body div main article.content {
         flex-wrap: nowrap;
         justify-content: unset;
         display: flex;
+        max-height: unset;
+        height: 85vh !important;
     }
     .innerfriendlistcontainer {
         display: flex;
