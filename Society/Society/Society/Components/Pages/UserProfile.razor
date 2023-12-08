@@ -29,8 +29,27 @@ else{
                 <div class="profiledescription"><b>Description: </b><p>@user.Description</p></div>
             </div>
             <div style="display: flex; flex-direction: row; margin:0 20px">
-                <button class="dashedborder" style="margin-top: 10px; display: inline-block; width: 50%; margin-right: 5px;">Add friend</button>
-                <button class="dashedborder" style="margin-top: 10px; display: inline-block; width: 50%; margin-left: 5px;">Remove friend</button>
+                @if(status == "add disabled")
+                {
+                    <button disabled class="dashedborder" style="margin-top: 10px; display: inline-block; width: 50%; margin-right: 5px; width: 100%;">Add friend</button>
+                }
+                else if(status == "remove disabled")
+                {
+                    <button disabled class="dashedborder" style="margin-top: 10px; display: inline-block; width: 50%; margin-left: 5px; width: 100%;">Remove friend</button>
+                }
+                else if(status == "added")
+                {
+                    <button @onclick="(() => RemoveFriend(profileGuid))" class="dashedborder" style="margin-top: 10px; display: inline-block; width: 50%; margin-left: 5px; width: 100%;">Remove friend</button>
+                }
+                else if (status == "removed")
+                {
+                    <button @onclick="(() => AddFriend(profileGuid))" class="dashedborder" style="margin-top: 10px; display: inline-block; width: 50%; margin-right: 5px; width: 100%;">Add friend</button>
+                }
+                else
+                {
+                    <button @onclick="(() => AddFriend(profileGuid))" class="dashedborder" style="margin-top: 10px; display: inline-block; width: 50%; margin-right: 5px;">Add friend</button>
+                    <button @onclick="(() => RemoveFriend(profileGuid))" class="dashedborder" style="margin-top: 10px; display: inline-block; width: 50%; margin-left: 5px;">Remove friend</button>
+                }
             </div>
         </div>
         <div class="friendlistcontainer" style="">
@@ -52,10 +71,32 @@ else{
     private User? user = new();
     string? userguid;
     private HttpResponseMessage response = new();
+    private string friendStatus = "";
+    private string status = "";
 
-    private async Task ClickFriend(string friendId)
+    private async Task AddFriend(string profileGuid)
     {
-        
+        status = "add disabled";
+        StateHasChanged();
+        await Task.Delay(2000);
+        /*HttpClient httpClient = new HttpClient();
+        response = await httpClient.GetAsync(API_URL + "api/User/Add/" + profileGuid);
+        friendStatus = await response.Content.ReadAsStringAsync();
+        httpClient.Dispose();*/
+        status = "added";
+        StateHasChanged();
+    }
+    private async Task RemoveFriend(string profileGuid)
+    {
+        status = "remove disabled";
+        StateHasChanged();
+        await Task.Delay(2000);
+        /*HttpClient httpClient = new HttpClient();
+        response = await httpClient.GetAsync(API_URL + "api/User/Remove/" + profileGuid);
+        friendStatus = await response.Content.ReadAsStringAsync();
+        httpClient.Dispose();*/
+        status = "removed";
+        StateHasChanged();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
