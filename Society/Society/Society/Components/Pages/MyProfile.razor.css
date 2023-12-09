@@ -125,6 +125,18 @@
         background-color: rgb(210, 221, 236);
     }
 
+.hidecomments {
+    height: 0;
+    opacity: 0;
+    transition: all .3s ease;
+}
+
+.showcomments {
+    height: 100%;
+    opacity: 1;
+    transition: all .3s ease;
+}
+
 
 
 /*****************/

@@ -40,14 +40,46 @@ else if (user != null && user.Name != "")
             <div class="feedcontainer" style="width: 100%; height: 100%; /*! margin: 20px; */ border-top: 2px black dashed;display: block;margin-top: 10px;padding: 0 20px;padding-bottom: 20px;">
 
                 <!--Remove chunk when implemented-->
-                @foreach (var friend in user.Friends)
+                @foreach (var post in user.Friends)
                 {
                     <div class="feedpost" style="background-color: rgba(200, 200, 200, 0.5);display: flex; flex-direction: column;border: 2px black dashed; width: 100%; /*! margin: 0 20px; */height: auto;/*! margin: 20px; */margin-top: 20px;">
-                        <div class="feedpostheader" style="border-bottom: 2px dashed black; display: flex;"><b>Name</b><b style="width: 100%; ">Feedpost</b><b>Time</b></div>
+                        <div class="feedpostheader" style="border-bottom: 2px dashed black; display: flex;">
+                            <b style="padding: 0 5px; border-right: 2px black dashed;">Name</b>
+                            <b style="width: 100%; ">Feedpost</b>
+                            <b style="padding: 0 5px; border-left: 2px black dashed;">Time</b>
+                        </div>
                         <div style="padding: 10px;height: 100%; background-color: rgba(200, 200, 200, 0.5);background-color: white;">
                             <p style="text-align: left;">Today i started a new job at yadayada some stuff about daily life i want to share yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada </p>
                         </div>
-                        <button style="padding: 0; border: none;border-top: 2px black dashed;height: auto; width: 100%; background-color: rgba(200, 200, 200, 0.5);">Comments</button>
+
+                        <button @onclick="ToggleComments" style="padding: 0; border: none;border-top: 2px black dashed;height: auto; width: 100%; background-color: rgba(200, 200, 200, 0.5);">
+                            <b>Comments</b>
+                        </button>
+
+                        <div class="@commentstoggle" style="border-top: 2px black dashed;">
+                            <div style="display:flex;flex-direction:row; justify-content: center;margin-top: 20px;">
+                                <input type="text" placeholder="Got something to say?" style="border: 2px black dashed;margin: 20px; margin-top: 0; margin-right: 10px; width: 100%;" />
+                                <button style="border: 2px black dashed;margin: 0px 20px 20px 0px !important;">Send</button>
+                            </div>
+                            <div class="feedpostcommentcontainer" style="border-top: 2px black dashed;">
+
+                                @foreach (var comment in user.Friends)
+                                {
+                                    <div class="feedpostcomment" style="display: flex; flex-direction: column; margin: 20px; border: 2px black dashed">
+                                        <div class="feedpostcommentheader" style=" background-color: rgba(200, 200, 200, 0.5);display: flex; flex-direction: row; justify-content: space-between; border-bottom: 2px black dashed;">
+                                            <b style="margin: 0; border-right: 2px black dashed; padding: 0 5px;">Name</b>
+                                            <b style="margin: 0;">Comment</b>
+                                            <b style="margin: 0; border-left: 2px black dashed; padding: 0 5px;">Time</b>
+                                        </div>
+                                        <div class="feedpostcommentcontent" style="text-align: left;display: flex; flex-direction: row; justify-content: space-between; padding: 10px; background-color: white;">
+                                            <p style="margin: 0;">comment text yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada</p>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+
                     </div>
                 }
                 <!--Remove chunk when implemented-->
@@ -72,6 +104,19 @@ else if (user != null && user.Name != "")
     private User? user = new();
     string? userguid;
     private HttpResponseMessage response = new();
+    private string commentstoggle = "hidecomments";
+
+    private void ToggleComments()
+    {
+        if (commentstoggle == "hidecomments")
+        {
+            commentstoggle = "showcomments";
+        }
+        else
+        {
+            commentstoggle = "hidecomments";
+        }
+    }
 
     private void ClickFriend(string friendId)
     {
