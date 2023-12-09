@@ -258,7 +258,7 @@
         /*text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;*/
         text-shadow: -2px 2px black !important;
         text-shadow: -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff;
-        color: black !important;
+        /*color: black !important;*/
     }
 }
 
@@ -358,7 +358,7 @@
         color: lightskyblue !important;
         /*text-shadow: -2px 2px black !important;*/
         text-shadow: -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff;
-        color: black !important;
+        /*color: black !important;*/
     }
 
     .options-navlink-container {
