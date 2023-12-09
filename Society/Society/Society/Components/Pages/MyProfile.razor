@@ -34,8 +34,8 @@ else if (user != null && user.Name != "")
                 <div class="profiledescription"><b>Description: </b><p>@user.Description</p></div>
             </div>
             <div style="display:flex;flex-direction:row;">
-                <input type="text" placeholder="Got something interesting to say?" style="width: 100%;border: 2px black dashed;margin: 10px; margin-left: 20px;" />
-                <button style="border: 2px black dashed;margin: 10px 20px 10px 0 !important;">Send</button>
+                <input @bind-value="@feedpostinput" id="feedpostinput" type="text" placeholder="Got something interesting to say?" style="width: 100%;border: 2px black dashed;margin: 10px; margin-left: 20px;" />
+                <button @onclick="AddPost" style="border: 2px black dashed;margin: 10px 20px 10px 0 !important;">Send</button>
             </div>
             <div class="feedcontainer" style="width: 100%; height: 100%; /*! margin: 20px; */ border-top: 2px black dashed;display: block;margin-top: 10px;padding: 0 20px;padding-bottom: 20px;">
 
@@ -58,8 +58,8 @@ else if (user != null && user.Name != "")
 
                         <div class="@commentstoggle" style="border-top: 2px black dashed;">
                             <div style="display:flex;flex-direction:row; justify-content: center;margin-top: 20px;">
-                                <input type="text" placeholder="Got something to say?" style="border: 2px black dashed;margin: 20px; margin-top: 0; margin-right: 10px; width: 100%;" />
-                                <button style="border: 2px black dashed;margin: 0px 20px 20px 0px !important;">Send</button>
+                                <input @bind-value="@commentinput" id="commentinput" type="text" placeholder="Got something to say?" style="border: 2px black dashed;margin: 20px; margin-top: 0; margin-right: 10px; width: 100%;" />
+                                <button @onclick="AddComment" style="border: 2px black dashed;margin: 0px 20px 20px 0px !important;">Send</button>
                             </div>
                             <div class="feedpostcommentcontainer" style="border-top: 2px black dashed;">
 
@@ -105,6 +105,8 @@ else if (user != null && user.Name != "")
     string? userguid;
     private HttpResponseMessage response = new();
     private string commentstoggle = "showcomments";
+    private string feedpostinput = "";
+    private string commentinput = "";
 
     private void ToggleComments(string postid)
     {
@@ -119,18 +121,31 @@ else if (user != null && user.Name != "")
         // only show/hide comments for selected post TODO
         /*foreach (var post in user.Friends)
         {
-            if (postid == user.Friends.Select(x => x.FriendId).ToString())
-            {
+        if (postid == user.Friends.Select(x => x.FriendId).ToString())
+                {
                 if (commentstoggle == "showcomments")
                 {
-                    this.commentstoggle = "hidecomments";
+                this.commentstoggle = "hidecomments";
                 }
                 else
                 {
-                    this.commentstoggle = "showcomments";
-                }
-            }
-        }*/
+                this.commentstoggle = "showcomments";
+    }
+    }
+    }*/
+    }
+
+    private void AddPost()
+    {
+        feedpostinput = feedpostinput;
+        Task.Delay(2000);
+        feedpostinput = "";
+    }
+    private void AddComment(/*string postid, string content*/)
+    {
+        commentinput = commentinput;
+        Task.Delay(2000);
+        commentinput = "";
     }
 
     private void ClickFriend(string friendId)

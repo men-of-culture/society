@@ -73,8 +73,8 @@ else{
 
                         <div class="@commentstoggle" style="border-top: 2px black dashed;">
                             <div style="display:flex;flex-direction:row; justify-content: center;margin-top: 20px;">
-                                <input type="text" placeholder="Got something to say?" style="border: 2px black dashed;margin: 20px; margin-top: 0; margin-right: 10px; width: 100%;" />
-                                <button style="border: 2px black dashed;margin: 0px 20px 20px 0px !important;">Send</button>
+                                <input @bind-value="@commentinput" id="commentinput" type="text" placeholder="Got something to say?" style="border: 2px black dashed;margin: 20px; margin-top: 0; margin-right: 10px; width: 100%;" />
+                                <button @onclick="AddComment" style="border: 2px black dashed;margin: 0px 20px 20px 0px !important;">Send</button>
                             </div>
                             <div class="feedpostcommentcontainer" style="border-top: 2px black dashed;">
 
@@ -103,7 +103,11 @@ else{
 
         </div>
         <div class="friendlistcontainer" style="">
-            <b>Messages</b><div style="display:flex;flex-direction:row; justify-content: center;"><input type="text" placeholder="Got something to say?" style="border: 2px black dashed;margin: 20px; margin-top: 0; margin-right: 10px; width: 100%;" /><button style="border: 2px black dashed;margin: 0px 20px 20px 0px !important;">Send</button></div><div class="innerfriendlistcontainer" style="overflow: auto;">
+            <b>Messages</b><div style="display:flex;flex-direction:row; justify-content: center;">
+                <input @bind-value="@messageinput" id="messageinput" type="text" placeholder="Got something to say?" style="border: 2px black dashed;margin: 20px; margin-top: 0; margin-right: 10px; width: 100%;" />
+                <button @onclick="AddMessage" style="border: 2px black dashed;margin: 0px 20px 20px 0px !important;">Send</button>
+            </div>
+            <div class="innerfriendlistcontainer" style="overflow: auto;">
                 @foreach (var friend in user.Friends)
                 {
                     <div class="friendcontainer">
@@ -124,6 +128,8 @@ else{
     private string friendStatus = "";
     private string status = "";
     private string commentstoggle = "showcomments";
+    private string messageinput = "";
+    private string commentinput = "";
 
     private void ToggleComments(string postid)
     {
@@ -138,18 +144,30 @@ else{
         // only show/hide comments for selected post TODO
         /*foreach (var post in user.Friends)
         {
-            if (postid == user.Friends.Select(x => x.FriendId).ToString())
+        if (postid == user.Friends.Select(x => x.FriendId).ToString())
             {
-                if (commentstoggle == "showcomments")
+            if (commentstoggle == "showcomments")
                 {
-                    this.commentstoggle = "hidecomments";
-                }
-                else
-                {
-                    this.commentstoggle = "showcomments";
-                }
+                this.commentstoggle = "hidecomments";
             }
-        }*/
+            else
+                {
+                this.commentstoggle = "showcomments";
+    }
+    }
+    }*/
+    }
+    private void AddMessage()
+    {
+        messageinput = messageinput;
+        Task.Delay(2000);
+        messageinput = "";
+    }
+    private void AddComment(/*string postid, string content*/)
+    {
+        commentinput = commentinput;
+        Task.Delay(2000);
+        commentinput = "";
     }
 
     private async Task AddFriend(string profileGuid)
