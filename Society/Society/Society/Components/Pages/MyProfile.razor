@@ -52,7 +52,7 @@ else if (user != null && user.Name != "")
                             <p style="text-align: left;">Today i started a new job at yadayada some stuff about daily life i want to share yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada </p>
                         </div>
 
-                        <button @onclick="ToggleComments" style="padding: 0; border: none;border-top: 2px black dashed;height: auto; width: 100%; background-color: rgba(200, 200, 200, 0.5);">
+                        <button @onclick="(() => ToggleComments(post.FriendId.ToString()))" style="padding: 0; border: none;border-top: 2px black dashed;height: auto; width: 100%; background-color: rgba(200, 200, 200, 0.5);">
                             <b>Comments</b>
                         </button>
 
@@ -104,18 +104,33 @@ else if (user != null && user.Name != "")
     private User? user = new();
     string? userguid;
     private HttpResponseMessage response = new();
-    private string commentstoggle = "hidecomments";
+    private string commentstoggle = "showcomments";
 
-    private void ToggleComments()
+    private void ToggleComments(string postid)
     {
-        if (commentstoggle == "hidecomments")
+        if (commentstoggle == "showcomments")
         {
-            commentstoggle = "showcomments";
+            this.commentstoggle = "hidecomments";
         }
         else
         {
-            commentstoggle = "hidecomments";
+            this.commentstoggle = "showcomments";
         }
+        // only show/hide comments for selected post TODO
+        /*foreach (var post in user.Friends)
+        {
+            if (postid == user.Friends.Select(x => x.FriendId).ToString())
+            {
+                if (commentstoggle == "showcomments")
+                {
+                    this.commentstoggle = "hidecomments";
+                }
+                else
+                {
+                    this.commentstoggle = "showcomments";
+                }
+            }
+        }*/
     }
 
     private void ClickFriend(string friendId)

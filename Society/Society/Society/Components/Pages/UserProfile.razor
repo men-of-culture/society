@@ -123,18 +123,33 @@ else{
     private HttpResponseMessage response = new();
     private string friendStatus = "";
     private string status = "";
-    private string commentstoggle = "hidecomments";
+    private string commentstoggle = "showcomments";
 
-    private void ToggleComments()
+    private void ToggleComments(string postid)
     {
-        if (commentstoggle == "hidecomments")
+        if (commentstoggle == "showcomments")
         {
-            commentstoggle = "showcomments";
+            this.commentstoggle = "hidecomments";
         }
         else
         {
-            commentstoggle = "hidecomments";
+            this.commentstoggle = "showcomments";
         }
+        // only show/hide comments for selected post TODO
+        /*foreach (var post in user.Friends)
+        {
+            if (postid == user.Friends.Select(x => x.FriendId).ToString())
+            {
+                if (commentstoggle == "showcomments")
+                {
+                    this.commentstoggle = "hidecomments";
+                }
+                else
+                {
+                    this.commentstoggle = "showcomments";
+                }
+            }
+        }*/
     }
 
     private async Task AddFriend(string profileGuid)
