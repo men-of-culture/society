@@ -51,6 +51,25 @@ else{
                     <button @onclick="(() => RemoveFriend(profileGuid))" class="dashedborder" style="margin-top: 10px; display: inline-block; width: 50%; margin-left: 5px;">Remove friend</button>
                 }
             </div>
+
+            <div class="feedcontainer" style="width: 100%; height: 100%; /*! margin: 20px; */ border: 2px black dashed;display: block;margin-top: 20px;padding: 0 20px;padding-bottom: 20px;">
+                <div class="feedpost" style="display: flex; flex-direction: column;border: 2px black dashed; width: 100%; /*! margin: 0 20px; */height: auto;/*! margin: 20px; */margin-top: 20px;">
+                    <b style="width: 100%; border-bottom: 2px solid black; background-color: rgba(200, 200, 200, 0.5);">Feedpost</b>
+                    <div style="padding: 10px;height: 100%;border: 2px dashed black; background-color: rgba(200, 200, 200, 0.5);">
+                        <p style="text-align: left;">Today i started a new job at yadayada some stuff about daily life i want to share</p>
+                    </div>
+                    <button style="padding: 0; border: 2px black dashed;height: auto; width: 100%; background-color: rgba(200, 200, 200, 0.5);">Comments</button>
+                </div>
+                <!--Remove chunk when implemented-->
+                <div class="feedpost" style="display: flex; flex-direction: column;border: 2px black dashed; width: 100%; /*! margin: 0 20px; */height: auto;/*! margin: 20px; */margin-top: 20px;">
+                    <b style="width: 100%; border-bottom: 2px solid black; background-color: rgba(200, 200, 200, 0.5);">Another feedpost</b>
+                    <div style="padding: 10px;height: 100%;border: 2px dashed black; background-color: rgba(200, 200, 200, 0.5);">
+                        <p style="text-align: left;">Microsoft just announced a new version of .NET this november. Check out the yadayada some more tech trend stuff</p>
+                    </div>
+                    <button style="padding: 0; border: 2px black dashed;height: auto; width: 100%; background-color: rgba(200, 200, 200, 0.5);">Comments</button>
+                </div><!--Remove chunk when implemented-->
+            </div>
+
         </div>
         <div class="friendlistcontainer" style="">
             <b>Messages</b><div style="display:flex;flex-direction:row; justify-content: center;"><input type="text" placeholder="Got something to say?" style="border: 2px black dashed;margin: 20px; margin-top: 0; margin-right: 10px; width: 100%;" /><button style="border: 2px black dashed;margin: 0px 20px 20px 0px !important;">Send</button></div><div class="innerfriendlistcontainer" style="overflow: auto;">

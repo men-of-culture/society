@@ -31,9 +31,30 @@ else if (user != null && user.Name != "")
                         <div class="profilename"><b>Name: </b>@user.Name</div>
                         <div class="profileimage"><b>Imagecontainer</b><br />@user.Image</div>
                     </div>
-                    <div class="profiledescription"><b>Description: </b><p>@user.Description</p></div>
-            </div><div style="display:flex;flex-direction:row;"><input type="text" placeholder="Got something interesting to say?" style="width: 100%;border: 2px black dashed;margin: 20px; margin-bottom: 0px; margin-right: 10px;" /><button style="border: 2px black dashed;margin: 20px 20px 0 0 !important;">Send</button></div>
+                <div class="profiledescription"><b>Description: </b><p>@user.Description</p></div>
             </div>
+            <div style="display:flex;flex-direction:row;">
+                <input type="text" placeholder="Got something interesting to say?" style="width: 100%;border: 2px black dashed;margin: 10px; margin-left: 20px;" />
+                <button style="border: 2px black dashed;margin: 10px 20px 10px 0 !important;">Send</button>
+            </div>
+            <div class="feedcontainer" style="width: 100%; height: 100%; /*! margin: 20px; */ border: 2px black dashed;display: block;margin-top: 10px;padding: 0 20px;padding-bottom: 20px;">
+                <div class="feedpost" style="display: flex; flex-direction: column;border: 2px black dashed; width: 100%; /*! margin: 0 20px; */height: auto;/*! margin: 20px; */margin-top: 20px;">
+                    <b style="width: 100%; border-bottom: 2px solid black; background-color: rgba(200, 200, 200, 0.5);">Feedpost</b>
+                    <div style="padding: 10px;height: 100%;border: 2px dashed black; background-color: rgba(200, 200, 200, 0.5);">
+                        <p style="text-align: left;">Today i started a new job at yadayada some stuff about daily life i want to share</p>
+                    </div>
+                    <button style="padding: 0; border: 2px black dashed;height: auto; width: 100%; background-color: rgba(200, 200, 200, 0.5);">Comments</button>
+                </div>
+                <!--Remove chunk when implemented-->
+                <div class="feedpost" style="display: flex; flex-direction: column;border: 2px black dashed; width: 100%; /*! margin: 0 20px; */height: auto;/*! margin: 20px; */margin-top: 20px;">
+                    <b style="width: 100%; border-bottom: 2px solid black; background-color: rgba(200, 200, 200, 0.5);">Another feedpost</b>
+                    <div style="padding: 10px;height: 100%;border: 2px dashed black; background-color: rgba(200, 200, 200, 0.5);">
+                        <p style="text-align: left;">Microsoft just announced a new version of .NET this november. Check out the yadayada some more tech trend stuff</p>
+                    </div>
+                    <button style="padding: 0; border: 2px black dashed;height: auto; width: 100%; background-color: rgba(200, 200, 200, 0.5);">Comments</button>
+                </div><!--Remove chunk when implemented-->
+            </div>
+        </div>
             <div class="friendlistcontainer">
             <b>Friendlist</b><div class="innerfriendlistcontainer" style="overflow: auto;">
                 @foreach (var friend in user.Friends)
