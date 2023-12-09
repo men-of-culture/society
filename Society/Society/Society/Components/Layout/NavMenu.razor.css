@@ -257,6 +257,8 @@
         color: lightskyblue !important;
         /*text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000;*/
         text-shadow: -2px 2px black !important;
+        text-shadow: -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff;
+        color: black !important;
     }
 }
 
@@ -355,6 +357,8 @@
         transition: all ease .3s;
         color: lightskyblue !important;
         /*text-shadow: -2px 2px black !important;*/
+        text-shadow: -1px 1px 0 #fff, 1px 1px 0 #fff, 1px -1px 0 #fff, -1px -1px 0 #fff;
+        color: black !important;
     }
 
     .options-navlink-container {

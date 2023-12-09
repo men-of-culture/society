@@ -1,0 +1,187 @@
+﻿/*profile*/
+.profilelist {
+    align-content: center;
+    display: flex;
+    margin: auto;
+    flex: 1 0 21%;
+    justify-content: space-between;
+}
+
+.profilecontainer {
+    display: flex;
+    border: 2px dashed black;
+    margin: 20px 30px 0px;
+    /*padding: 0px 10px 10px;*/
+    width: 100%;
+    background-color: rgba(0, 127, 255, 0.1);
+    flex-direction: column;
+    height: 100%;
+    padding-bottom: 20px !important;
+    margin-right: 365px;
+    margin-bottom: 30px;
+}
+
+    .profilecontainer > b {
+        border-bottom: 2px dashed black;
+        margin-bottom: 20px;
+        background-color: rgba(200, 200, 200, 0.5);
+    }
+
+.innerprofilecontainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 0px 20px;
+}
+
+.profilenamecontainer {
+    display: inline-block;
+}
+
+.profilename {
+    width: 200px;
+    display: block;
+    border: 2px dashed black;
+    margin-bottom: 10px;
+    background-color: rgba(200, 200, 200, 0.5);
+}
+
+.profileimage {
+    width: 200px;
+    height: 190px;
+    display: block;
+    border: 2px dashed black;
+    overflow: auto;
+    background-color: rgba(200, 200, 200, 0.5);
+}
+
+.profiledescription {
+    width: 100%;
+    display: inline-block;
+    border: 2px dashed black;
+    overflow-y: scroll;
+    max-height: 228px;
+    margin-left: 10px;
+    background-color: rgba(200, 200, 200, 0.5);
+}
+
+/*friendlist*/
+.friendlistcontainer {
+    display: flex;
+    border: 2px dashed black;
+    margin: 20px 30px 20px 30px;
+    max-width: 600px;
+    height: 100%;
+    flex-direction: column;
+    background-color: rgba(0, 127, 255, 0.1);
+    margin-left: 0;
+    padding-bottom: 10px;
+}
+
+    .friendlistcontainer > b {
+        border-bottom: 2px dashed black;
+        margin-bottom: 20px;
+        background-color: rgba(200, 200, 200, 0.5);
+    }
+
+.friendcontainer {
+    display: flex;
+    margin: 20px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.friendimage {
+    width: 50px;
+    height: 50px;
+    display: block;
+    border: 2px dashed black;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background-color: rgba(200, 200, 200, 0.5);
+}
+
+.friendname {
+    width: 200px;
+    display: flex;
+    border: 2px dashed black;
+    align-items: start;
+    justify-content: left;
+    padding-left: 10px;
+    margin-left: 10px;
+    background-color: rgba(200, 200, 200, 0.5);
+    overflow: auto;
+    overflow-wrap: anywhere;
+}
+
+.friendcontainer {
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+    .friendcontainer:hover {
+        background-color: rgb(210, 221, 236);
+    }
+
+
+
+/*****************/
+/* Media queries */
+/*****************/
+
+/*smallsize*/
+@media (min-width: 641px) {
+    .friendlistcontainer {
+        max-height: 500px;
+        overflow: auto;
+        position: fixed;
+        right: 0;
+        top: 65px;
+        height: 85vh !important;
+        max-height: unset;
+    }
+}
+
+/*bigsize*/
+@media (max-width: 1000px) {
+    .friendlistcontainer {
+        margin: auto;
+        margin-top: auto;
+        margin-top: 20px;
+        position: initial;
+        margin: 30px !important;
+        width: 100%;
+        max-width: none;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        flex-wrap: nowrap;
+        justify-content: unset;
+        display: flex;
+        max-height: unset;
+        height: 85vh !important;
+    }
+
+    .innerfriendlistcontainer {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        overflow: auto;
+    }
+
+    .profilelist {
+        flex-wrap: wrap !important;
+    }
+
+    .profilecontainer {
+        margin-right: 30px !important;
+    }
+
+    .friendname {
+        width: 100%;
+    }
+}
