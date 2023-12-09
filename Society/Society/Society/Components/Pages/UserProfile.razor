@@ -67,7 +67,7 @@ else{
                             <p style="text-align: left;">Today i started a new job at yadayada some stuff about daily life i want to share yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada </p>
                         </div>
 
-                        <button @onclick="ToggleComments" style="padding: 0; border: none;border-top: 2px black dashed;height: auto; width: 100%; background-color: rgba(200, 200, 200, 0.5);">
+                        <button @onclick="(() => ToggleComments(post.FriendId.ToString()))" style="padding: 0; border: none;border-top: 2px black dashed;height: auto; width: 100%; background-color: rgba(200, 200, 200, 0.5);">
                             <b>Comments</b>
                         </button>
 
