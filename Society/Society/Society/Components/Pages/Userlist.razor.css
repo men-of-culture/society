@@ -1,0 +1,57 @@
+﻿.userlist {
+    align-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    flex: 1 0 21%;
+    justify-content: center;
+    /*margin-top: 60px;*/
+}
+
+.usercontainer {
+    display: flex;
+    border: 2px dashed black;
+    margin: 20px 30px 20px 30px;
+    max-width: 600px;
+    padding: 20px;
+    background-color: rgba(0, 127, 255, 0.1);
+    flex-direction: column;
+}
+
+.usernamecontainer {
+    display: inline-block;
+}
+
+.innerusercontainer {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.username {
+    width: 200px;
+    display: block;
+    border: 2px dashed black;
+    margin-bottom: 10px;
+    background-color: rgba(200, 200, 200, 0.5);
+}
+
+.userdescription {
+    width: 100%;
+    display: inline-block;
+    border: 2px dashed black;
+    overflow-y: scroll;
+    max-height: 228px;
+    margin-left: 10px;
+    background-color: rgba(200, 200, 200, 0.5);
+}
+
+.userimage {
+    width: 200px;
+    height: 190px;
+    display: block;
+    border: 2px dashed black;
+    overflow: auto;
+    background-color: rgba(200, 200, 200, 0.5);
+}

@@ -50,98 +50,20 @@ h1:focus {
     border-color: #929292;
 }
 
-/* MY CSS */
-
-.red-button {
-    color: #fff;
-    background-color: #ff140c;
-    border-color: #1861ac;
-}
-
-.blue-button {
-    color: #fff;
-    background-color: #0066ff;
-    border-color: #1861ac;
-}
-
-.button {
-    color: #fff;
-    background-color: #ff140c;
-}
-
-.pagetitle {
-    margin: auto;
-    text-align: center;
-    border-bottom: 2px dashed black;
-    padding-bottom: 20px;
-    margin-bottom: 50px;
-}
+  /**************/
+ /* CUSTOM CSS */
+/**************/
 
 .loading {
     text-align: center;
 }
 
-.userlist {
-    align-content: center;
-    display: flex;
-    flex-wrap: wrap;
-    margin: auto;
-    flex: 1 0 21%;
-    justify-content: center;
-    /*margin-top: 60px;*/
-}
-
-.usercontainer {
-    display: flex;
-    border: 2px dashed black;
-    margin: 20px 30px 20px 30px;
-    max-width: 600px;
-    padding: 20px;
-    background-color: rgba(0, 127, 255, 0.1);
-    flex-direction: column;
-}
-
-.usernamecontainer {
-    display: inline-block;
-}
-
-.innerusercontainer {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    margin-bottom: 10px;
-}
-
-.username {
-    width: 200px;
-    display: block;
-    border: 2px dashed black;
-    margin-bottom: 10px;
-    background-color: rgba(200, 200, 200, 0.5);
-}
-
-.userdescription {
-    width: 100%;
-    display: inline-block;
-    border: 2px dashed black;
-    overflow-y: scroll;
-    max-height: 228px;
-    margin-left: 10px;
-    background-color: rgba(200, 200, 200, 0.5);
-}
-
-.userimage {
-    width: 200px;
-    height: 190px;
-    display: block;
-    border: 2px dashed black;
-    overflow: auto;
-    background-color: rgba(200, 200, 200, 0.5);
-}
 body div main article.content {
     padding-left: 0 !important;
     padding-right: 0 !important;
     /*padding-top: 55px !important;*/
+    margin: auto;
+    text-align: center;
 }
 
 .pagetitle {
@@ -163,25 +85,21 @@ body div main article.content {
     margin-bottom: 10px;
 }
 
-.content {
-    margin: auto;
-    text-align: center;
+.nav-item {
+    padding: 0 !important;
+}
+
+.nav-link {
+    padding: 0 !important;
+    justify-content: left !important;
+    height: 5rem !important;
 }
 
 @media (min-width: 641px) {
-    .nav-item {
-        padding: 0 !important;
-    }
-    .nav-link {
-        padding: 0 !important;
-        justify-content: left !important;
-        height: 5rem !important;
-    }
+    
 }
 
 @media (max-width: 640.99px) {
-    
-
     .nav-item {
         padding: 0 !important;
     }
@@ -204,9 +122,6 @@ body div main article.content {
 body {
     background-color: white;
     /*background-image: linear-gradient(180deg, #000 0%, rgb(54, 62, 77) 110%) !important;*/
-}
-.dashedborder {
-    border: 2px black dashed;
 }
 .section {
     border: 2px black dashed;
