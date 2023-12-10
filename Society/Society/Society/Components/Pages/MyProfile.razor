@@ -37,12 +37,12 @@ else if (user != null && user.Name != "")
                 <input @bind-value="@feedpostinput" id="feedpostinput" type="text" placeholder="Got something interesting to say?" style="width: 100%;border: 2px black dashed;margin: 10px; margin-left: 20px;" />
                 <button @onclick="AddPost" style="border: 2px black dashed;margin: 10px 20px 10px 0 !important;">Send</button>
             </div>
-            <div class="feedcontainer" style="width: 100%; height: 100%; /*! margin: 20px; */ border-top: 2px black dashed;display: block;margin-top: 10px;padding: 0 20px;padding-bottom: 20px;">
+            <div class="feedcontainer" style="width: 100%; height: 100%; /*! margin: 20px; */ border-top: 2px black dashed;display: block;margin-top: 10px;padding: 0 10px;padding-bottom: 20px;display: flex;flex-direction: row;flex-wrap: wrap; justify-content: space-between;">
 
                 <!--Remove chunk when implemented-->
                 @foreach (var post in user.Friends)
                 {
-                    <div class="feedpost" style="display: flex; flex-direction: column;border: 2px black dashed; width: 100%; /*! margin: 0 20px; */height: auto;/*! margin: 20px; */margin-top: 20px;">
+                    <div class="feedpost" style="">
                         <div class="feedpostheader" style="background-color: rgba(200, 200, 200, 0.5);border-bottom: 2px dashed black; display: flex;">
                             <b style="padding: 0 5px; border-right: 2px black dashed;">Name</b>
                             <b style="width: 100%; ">Feedpost</b>

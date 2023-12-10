@@ -138,6 +138,19 @@
     display: block;
 }
 
+.feedpost {
+    display: flex;
+    flex-direction: column;
+    border: 2px black dashed;
+    width: 100%; /*! margin: 0 20px; */
+    height: auto; /*! margin: 20px; */
+    margin-top: 20px;
+    width: 48% !important;
+    margin: auto !important;
+    margin-top: 20px !important;
+    min-width: 350px !important;
+}
+
 
 /*****************/
 /* Media queries */
@@ -198,5 +211,13 @@
 
     .friendname {
         width: 100%;
+    }
+
+}
+
+@media (max-width: 1325px) {
+    .feedpost {
+        width: 100% !important;
+        margin: 20px 10px 0 10px !important;
     }
 }
