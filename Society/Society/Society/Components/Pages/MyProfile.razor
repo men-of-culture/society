@@ -61,11 +61,11 @@ else if (user != null && user.Name != "")
                                 <input @bind-value="@commentinput" id="commentinput" type="text" placeholder="Got something to say?" style="border: 2px black dashed;margin: 20px; margin-top: 0; margin-right: 10px; width: 100%;" />
                                 <button @onclick="AddComment" style="border: 2px black dashed;margin: 0px 20px 20px 0px !important;">Send</button>
                             </div>
-                            <div class="feedpostcommentcontainer" style="max-height: 40vh !important;overflow: auto;background-color: rgba(200, 200, 200, 0.5);margin-bottom: 0;;padding-bottom: 10px">
+                            <div class="feedpostcommentcontainer" style="max-height: 40vh !important;overflow: auto;background-color: rgba(200, 200, 200, 0.5);margin-bottom: 0;padding-bottom: 0px">
 
                                 @foreach (var comment in user.Friends)
                                 {
-                                    <div class="feedpostcomment" style="display: flex; flex-direction: column; margin: 20px; margin-bottom: 10px; margin-top: 0px; border: 2px black dashed">
+                                    <div class="feedpostcomment" style="">
                                         <div class="feedpostcommentheader" style=" background-color: rgba(200, 200, 200, 0.5);display: flex; flex-direction: row; justify-content: space-between; border-bottom: 2px black dashed;">
                                             <b style="margin: 0; border-right: 2px black dashed; padding: 0 5px;">Name</b>
                                             <b style="margin: 0;">Comment</b>
