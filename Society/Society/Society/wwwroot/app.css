@@ -54,6 +54,8 @@ h1:focus {
  /* CUSTOM CSS */
 /**************/
 
+
+
 .loading {
     text-align: center;
 }
@@ -123,6 +125,17 @@ body {
     background-color: white;
     /*background-image: linear-gradient(180deg, #000 0%, rgb(54, 62, 77) 110%) !important;*/
 }
+
+input{
+    border: 2px dashed black;
+}
+
+button {
+    border: 2px dashed black;
+}
+
+/** CSS test **/
+
 .section {
     border: 2px black dashed;
     /*border: 1px white solid;*/
