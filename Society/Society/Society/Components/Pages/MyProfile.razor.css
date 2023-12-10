@@ -17,7 +17,7 @@
     flex-direction: column;
     height: 100%;
     /*padding-bottom: 20px !important;*/
-    margin-right: 365px;
+    margin-right: 30px;
     margin-bottom: 30px;
 }
 
@@ -25,6 +25,9 @@
         border-bottom: 2px dashed black;
         margin-bottom: 20px;
         background-color: rgba(200, 200, 200, 0.5);
+        position: sticky;
+        top: 0;
+        background-color: rgba(200, 200, 200, 1);
     }
 
 .innerprofilecontainer {
@@ -76,6 +79,9 @@
     background-color: rgba(0, 127, 255, 0.1);
     margin-left: 0;
     padding-bottom: 20px;
+    position: sticky;
+    min-width: 318px;
+    top: 0 !important;
 }
 
     .friendlistcontainer > b {
@@ -180,6 +186,8 @@
         top: 65px;
         height: 85vh !important;
         max-height: unset;
+	    position: sticky;
+    	min-width: 318px;
     }
 }
 
@@ -201,6 +209,7 @@
         display: flex;
         max-height: unset;
         height: 85vh !important;
+        margin-top: 0 !important;
     }
 
     .innerfriendlistcontainer {
@@ -222,8 +231,14 @@
         .profilecontainer p {
             text-align: left !important;
         }
+        .profilecontainer > b {
+            
+        }
 
     .friendname {
+        width: 100%;
+    }
+    .friendcontainer {
         width: 100%;
     }
 

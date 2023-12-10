@@ -17,7 +17,7 @@
     flex-direction: column;
     height: 100%;
     /*padding-bottom: 20px !important;*/
-    margin-right: 365px;
+    margin-right: 30px;
     margin-bottom: 30px;
 }
 
@@ -25,6 +25,9 @@
         border-bottom: 2px dashed black;
         margin-bottom: 20px;
         background-color: rgba(200, 200, 200, 0.5);
+        position: sticky;
+        top: 0;
+        background-color: rgba(200, 200, 200, 1);
     }
 
 .innerprofilecontainer {
@@ -200,6 +203,7 @@
         display: flex;
         max-height: unset;
         height: 85vh !important;
+        margin-top: 0 !important;
     }
 
     .innerfriendlistcontainer {
@@ -223,6 +227,9 @@
         }
 
     .friendname {
+        width: 100%;
+    }
+    .friendcontainer {
         width: 100%;
     }
 

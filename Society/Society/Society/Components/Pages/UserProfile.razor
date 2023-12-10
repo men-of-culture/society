@@ -19,7 +19,7 @@ else{
 
         <div class="profilecontainer">
 
-            <b>Feed</b>
+            <b style="position:sticky; top: 0;">Feed</b>
             <div class="innerprofilecontainer">
 
                 <div class="profilenamecontainer">
@@ -103,7 +103,7 @@ else{
             </div>
 
         </div>
-        <div class="friendlistcontainer" style="">
+        <div class="friendlistcontainer" style="position: sticky;top: 0;width: auto;min-width: 318px;">
             <b>Messages</b><div style="display:flex;flex-direction:row; justify-content: center;">
                 <input @bind-value="@messageinput" id="messageinput" type="text" placeholder="Got something to say?" style="border: 2px black dashed;margin: 20px; margin-top: 0; margin-right: 10px; width: 100%;" />
                 <button @onclick="AddMessage" style="border: 2px black dashed;margin: 0px 20px 20px 0px !important;">Send</button>
