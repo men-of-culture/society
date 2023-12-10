@@ -180,6 +180,12 @@
 /*****************/
 
 /*smallsize*/
+@media (max-width: 640.99px) {
+    .profilecontainer > b {
+        position: unset !important;
+    }
+}
+
 @media (min-width: 641px) {
     .friendlistcontainer {
         max-height: 500px;
