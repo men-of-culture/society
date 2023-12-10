@@ -1,3 +1,4 @@
+using Society.Client.Pages;
 using Society.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -39,6 +40,7 @@ app.UseSession();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
-    .AddInteractiveWebAssemblyRenderMode();
+    .AddInteractiveWebAssemblyRenderMode()
+    .AddAdditionalAssemblies(typeof(Clientside).Assembly); // Keep for blazor magic
 
 app.Run();
