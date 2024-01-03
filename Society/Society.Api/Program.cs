@@ -13,6 +13,7 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 });
 
 builder.Services.AddScoped<IRepository<User>, UserRepository>();
+builder.Services.AddScoped<FriendRepository, FriendRepository>();
 
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
