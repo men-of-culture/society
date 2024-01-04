@@ -11,10 +11,13 @@
     <button @onclick="RefreshButton">Magic</button>
 </div>
 
-
-@if (users == null || !users.Any())
+@if (users is null)
 {
     <div class="loading">Loading...</div>
+}
+else if (!users.Any())
+{
+    <div class="loading">Something went wrong...</div>
 }
 else
 {
@@ -33,9 +36,9 @@ else
 }
 
 @code {
+    private User? user;
+    private IEnumerable<User>? users;
     private HttpResponseMessage response = new();
-    private IEnumerable<User>? users = new List<User>();
-    private User? user = new();
 
     private void ClickUser(string userId)
     {
@@ -55,7 +58,7 @@ else
 
     private async Task RefreshButton()
     {
-        users = new List<User>();
+        users = null;
         await RefreshList();
     }
 
