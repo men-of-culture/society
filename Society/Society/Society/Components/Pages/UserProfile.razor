@@ -89,7 +89,7 @@ else{
         status = "added";
         StateHasChanged();
     }
-
+    
     private async Task RemoveFriend(string profileGuid)
     {
         status = "remove disabled";
@@ -102,7 +102,7 @@ else{
         status = "removed";
         StateHasChanged();
     }
-    
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
