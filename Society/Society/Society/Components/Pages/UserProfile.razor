@@ -10,9 +10,13 @@
     </h1>
 </div>
 
-@if (user == null || user.Name == "")
+@if (user is null)
 {
     <div class="loading">Loading...</div>
+}
+else if (user.Id == Guid.Empty)
+{
+    <div class="loading">Something went wrong...</div>
 }
 else{
     <div class="profilelist">
@@ -47,9 +51,8 @@ else{
     </div>
 }
 
-
 @code {
-    private User? user = new();
+    private User? user;
     string? userguid;
     private HttpResponseMessage response = new();
 
@@ -57,7 +60,7 @@ else{
     {
         
     }
-
+    
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)

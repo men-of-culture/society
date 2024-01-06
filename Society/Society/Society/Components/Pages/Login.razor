@@ -13,8 +13,8 @@
 
 @code {
     private string input = "";
-    private User? user = new();
-    private IEnumerable<User>? users = new List<User>();
+    private User? user;
+    private IEnumerable<User>? users;
     private HttpResponseMessage response = new();
 
     async Task SetLogin()
@@ -38,10 +38,12 @@
         response = await httpClient.GetAsync(API_URL + "api/User/");
         users = JsonConvert.DeserializeObject<IEnumerable<User>>(await response.Content.ReadAsStringAsync()) ?? new List<User>();
         httpClient.Dispose();
-        if (users.Any())
-            user = users.First();
-        if (user != null && user.Name != "")
+
+        user = users?.FirstOrDefault();
+        if (user is not null)
+        {
             input = user.Id.ToString();
+        }
 
         // make input check and prompt if invalid (spaces or periods)
         await ProtectedSessionStore.SetAsync("login", input);
