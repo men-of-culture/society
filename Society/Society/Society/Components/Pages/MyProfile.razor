@@ -10,15 +10,15 @@
     </h1>
 </div>
 
-@if (userguid == null && (user == null || user.Name == ""))
+@if (user is null)
 {
     <div class="loading">Loading...</div>
 }
-else if (userguid != null && (user == null || user.Name == ""))
+else if (user.Id == Guid.Empty)
 {
-    <div class="loading">Invalid login</div>
+    <div class="loading">Something went wrong...</div>
 }
-else if (user != null && user.Name != "")
+else
 {
     <div class="profilelist">
         
@@ -102,7 +102,7 @@ else if (user != null && user.Name != "")
 }
 
 @code {
-    private User? user = new();
+    private User? user;
     string? userguid;
     private HttpResponseMessage response = new();
     private string commentstoggle = "showcomments";
@@ -168,7 +168,6 @@ else if (user != null && user.Name != "")
 
     private async Task RefreshList()
     {
-        //if (myUser.Id.ToString() == userguid) return;
         HttpClient httpClient = new HttpClient();
         response = await httpClient.GetAsync(API_URL + "api/User/" + userguid);
         user = JsonConvert.DeserializeObject<User>(await response.Content.ReadAsStringAsync()) ?? new User();
