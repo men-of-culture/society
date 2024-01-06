@@ -10,11 +10,16 @@
     </h1>
 </div>
 
-@if (user == null || user.Name == "")
+@if (user is null)
 {
     <div class="loading">Loading...</div>
 }
-else{
+else if (user.Id == Guid.Empty)
+{
+    <div class="loading">Something went wrong...</div>
+}
+else
+{
     <div class="userlist">
         <div class="usercontainer">
             <div class="usernamecontainer">
@@ -26,19 +31,10 @@ else{
     </div>
 }
 
-
 @code {
-    private User? user = new();
+    private User? user;
     string? userguid;
     private HttpResponseMessage response = new();
-
-    private async Task ClickFriend(string friendId)
-    {
-        HttpClient httpClient = new HttpClient();
-        response = await httpClient.GetAsync(API_URL + "api/User/" + friendId);
-        user = JsonConvert.DeserializeObject<User>(await response.Content.ReadAsStringAsync()) ?? new User();
-        httpClient.Dispose();
-    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
