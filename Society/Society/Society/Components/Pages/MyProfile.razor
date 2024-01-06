@@ -111,13 +111,13 @@ else
 
     private void ToggleComments(string postid)
     {
-        /*if (commentstoggle == "showcomments")
+            /*if (commentstoggle == "showcomments")
         {
-            this.commentstoggle = "hidecomments";
-        }
+        this.commentstoggle = "hidecomments";
+            }
         else
         {
-            this.commentstoggle = "showcomments";
+        this.commentstoggle = "showcomments";
         }*/
         // only show/hide comments for selected post TODO
         /*foreach (var post in user.Friends)
@@ -171,6 +171,7 @@ else
         HttpClient httpClient = new HttpClient();
         response = await httpClient.GetAsync(API_URL + "api/User/" + userguid);
         user = JsonConvert.DeserializeObject<User>(await response.Content.ReadAsStringAsync()) ?? new User();
+        myUser = user;
         httpClient.Dispose();
     }
 }

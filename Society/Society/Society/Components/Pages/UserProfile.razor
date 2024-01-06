@@ -134,27 +134,28 @@ else{
     private string commentstoggle = "showcomments";
     private string messageinput = "";
     private string commentinput = "";
+    private bool isInFriendlist;
 
     private void ToggleComments(string postid)
     {
         /*if (commentstoggle == "showcomments")
-        {
+            {
             this.commentstoggle = "hidecomments";
-        }
-        else
+            }
+            else
         {
-            this.commentstoggle = "showcomments";
+        this.commentstoggle = "showcomments";
         }*/
         // only show/hide comments for selected post TODO
         /*foreach (var post in user.Friends)
         {
         if (postid == user.Friends.Select(x => x.FriendId).ToString())
-            {
-            if (commentstoggle == "showcomments")
+                {
+                if (commentstoggle == "showcomments")
                 {
                 this.commentstoggle = "hidecomments";
-            }
-            else
+                }
+                else
                 {
                 this.commentstoggle = "showcomments";
     }
@@ -204,6 +205,17 @@ else{
     {
         if (firstRender)
         {
+            var x = profileGuid;
+            var y = myUser;
+            isInFriendlist = myUser.Friends.Any(x => x.UserFriend.Id.ToString() == profileGuid);
+            if (isInFriendlist)
+            {
+                status = "added";
+            }
+            else
+            {
+                status = "removed";
+            }
             await RefreshList();
             StateHasChanged();
         }
