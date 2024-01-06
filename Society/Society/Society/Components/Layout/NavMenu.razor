@@ -1,29 +1,38 @@
-﻿﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">Society</a>
+﻿<div class="sidebar">﻿
+    <div class="top-row ps-3 navbar navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="">Society</a>
+        </div>
     </div>
-</div>
 
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+    <input type="checkbox" title="Navigation menu" class="navbar-toggler" />
 
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Login
-            </NavLink>
-        </div>
+    <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+        <nav class="flex-column" style="display: flex;flex-flow: row wrap;justify-content: flex-start;">
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="navicon bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> <div class="navtitle">Login</div>
+                </NavLink>
+            </div>
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="myprofile">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Profile
-            </NavLink>
-        </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="myprofile">
+                    <span class="navicon bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> <div class="navtitle">Profile</div>
+                </NavLink>
+            </div>
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="userlist">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Userlist
-            </NavLink>
-        </div>
-    </nav>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="userlist">
+                    <span class="navicon bi bi-list-nested-nav-menu" aria-hidden="true"></span> <div class="navtitle">Userlist</div>
+                </NavLink>
+            </div>
+
+            <div class="nav-item px-3 options-navlink-container">
+                <!-- use options class for style -->
+                <NavLink class="nav-link options-navlink" href="options" role="button" style="margin-top:auto !important;">
+                    <span class="navicon bi bi-gear-wide-connected-nav-menu" aria-hidden="true"></span> <div class="navtitle">Options</div>
+                </NavLink>
+            </div>
+        </nav>
+    </div>
 </div>

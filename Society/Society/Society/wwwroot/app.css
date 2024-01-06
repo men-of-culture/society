@@ -164,3 +164,32 @@ h1:focus {
     align-items: center;
     justify-content: left;
 }
+
+@media (min-width: 641px) {
+    .nav-item {
+        padding: 0 !important;
+    }
+    .nav-link {
+        padding: 0 !important;
+        justify-content: left !important;
+        height: 5rem !important;
+    }
+}
+
+@media (max-width: 640.99px) {
+    
+
+    .nav-item {
+        padding: 0 !important;
+    }
+
+    .nav-link {
+        padding: 0 !important;
+        justify-content: center !important;
+        height: 5rem !important;
+    }
+    
+    .content {
+        margin-top: 58px;
+    }
+}
