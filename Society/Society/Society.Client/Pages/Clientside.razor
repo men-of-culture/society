@@ -9,6 +9,20 @@
 
 <button @ref=ButtonRef class="@myButtonClass" @onclick="ClickButton">Click me</button>
 
+<style>
+    .red-button {
+        color: #fff;
+        background-color: #ff140c;
+        border-color: #1861ac;
+    }
+
+    .blue-button {
+        color: #fff;
+        background-color: #0066ff;
+        border-color: #1861ac;
+    }
+</style>
+
 @code {
     // fields
     string myButtonClass = "";
@@ -20,9 +34,9 @@
     private int currentCount = 0;
 
     // methods
-    private void ClickButton()
+    private void ClickButton() // Bound to the button on line 10 "onclick"
     {
-        if (myButtonClass == redButtonClass)
+        if (myButtonClass == redButtonClass) // Change from blue to red and vice versa
         {
             myButtonClass = blueButtonClass;
         }
@@ -31,15 +45,20 @@
             myButtonClass = redButtonClass;
         }
 
-        currentCount++;
+        currentCount++; // This value is bound to the html on line 8, so updating this value will force a rerender of that text component
     }
 
-    protected override void OnInitialized() // runs when the component is rendered, like the unity Start() method
-    {
-        DummyMethod();
-    }
     void DummyMethod()
     {
-        myButtonClass = redButtonClass;
+        myButtonClass = redButtonClass; // This value is bound to the button on line 10, defining its current class, so changing this value will force a rerender of the button component
+    }
+
+    protected override void OnAfterRender(bool firstRender) // When a component is done rendering
+    {
+        if (firstRender) // Only run this code the very first time the component is rendered, and ignore on further rerenders
+        {
+            DummyMethod();
+            StateHasChanged(); // Runs automatically when a component/variable is updated by a method EXCEPT the method OnAfterRender due to looping, so we call it on demand
+        }
     }
 }
