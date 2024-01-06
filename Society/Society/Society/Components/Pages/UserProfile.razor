@@ -18,15 +18,35 @@ else if (user.Id == Guid.Empty)
 {
     <div class="loading">Something went wrong...</div>
 }
-else
-{
-    <div class="userlist">
-        <div class="usercontainer">
-            <div class="usernamecontainer">
-                <div class="username"><b>Name: </b>@user.Name</div>
-                <div class="userimage"><b>Imagecontainer</b><br />@user.Image</div>
+else{
+    <div class="profilelist">
+
+        <div class="profilecontainer">
+
+            <b>Feed</b>
+            <div class="innerprofilecontainer">
+
+                <div class="profilenamecontainer">
+                    <div class="profilename"><b>Name: </b>@user.Name</div>
+                    <div class="profileimage"><b>Imagecontainer</b><br />@user.Image</div>
+                </div>
+                <div class="profiledescription"><b>Description: </b><p>@user.Description</p></div>
             </div>
-            <div class="userdescription"><b>Description: </b><p>@user.Description</p></div>
+            <div style="display: flex; flex-direction: row; margin:0 20px">
+                <button class="dashedborder" style="margin-top: 10px; display: inline-block; width: 50%; margin-right: 5px;">Add friend</button>
+                <button class="dashedborder" style="margin-top: 10px; display: inline-block; width: 50%; margin-left: 5px;">Remove friend</button>
+            </div>
+        </div>
+        <div class="friendlistcontainer" style="">
+            <b>Messages</b><div style="display:flex;flex-direction:row; justify-content: center;"><input type="text" placeholder="Got something to say?" style="border: 2px black dashed;margin: 20px; margin-top: 0; margin-right: 10px; width: 100%;" /><button style="border: 2px black dashed;margin: 0px 20px 20px 0px !important;">Send</button></div><div class="innerfriendlistcontainer" style="overflow: auto;">
+                @foreach (var friend in user.Friends)
+                {
+                    <div class="friendcontainer">
+                        <div class="friendimage"><b>{Name}<br />Img</b><!--@friend.UserFriend.Image--></div>
+                        <div class="friendname" style="text-align: left;"><b></b> contentcontentcontentbreak content contentcontent content content</div>
+                    </div>
+                }
+            </div>
         </div>
     </div>
 }
@@ -36,6 +56,11 @@ else
     string? userguid;
     private HttpResponseMessage response = new();
 
+    private async Task ClickFriend(string friendId)
+    {
+        
+    }
+    
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)

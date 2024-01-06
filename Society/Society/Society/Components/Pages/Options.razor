@@ -1,0 +1,27 @@
+﻿@page "/options"
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+<PageTitle>Options</PageTitle>
+
+<div class="pagetitle">
+    <h1>
+        Options
+    </h1>
+</div>
+
+<div class="content">
+    <div>
+        <p style="display: inline-block !important;">Keep menu collapsed on hover: </p>
+        <input style="display: inline-block !important;" type="checkbox" placeholder="Enter user GUID" id="input" @bind-value="@someOption" />
+    </div>
+    <button @onclick="SomeOption">Save options</button>
+</div>
+
+@code {
+    private string someOption;
+    async Task SomeOption()
+    {
+
+    }
+}

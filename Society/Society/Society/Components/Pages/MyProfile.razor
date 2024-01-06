@@ -20,23 +20,30 @@ else if (user.Id == Guid.Empty)
 }
 else
 {
-    <div class="userlist">
-        <div class="usercontainer">
-            <div class="usernamecontainer">
-                <div class="username"><b>Name: </b>@user.Name</div>
-                <div class="userimage"><b>Imagecontainer</b><br />@user.Image</div>
+    <div class="profilelist">
+        
+            <div class="profilecontainer">
+
+            <b>Feed</b>
+                <div class="innerprofilecontainer">
+
+                    <div class="profilenamecontainer">
+                        <div class="profilename"><b>Name: </b>@user.Name</div>
+                        <div class="profileimage"><b>Imagecontainer</b><br />@user.Image</div>
+                    </div>
+                    <div class="profiledescription"><b>Description: </b><p>@user.Description</p></div>
+            </div><div style="display:flex;flex-direction:row;"><input type="text" placeholder="Got something interesting to say?" style="width: 100%;border: 2px black dashed;margin: 20px; margin-bottom: 0px; margin-right: 10px;" /><button style="border: 2px black dashed;margin: 20px 20px 0 0 !important;">Send</button></div>
             </div>
-            <div class="userdescription"><b>Description: </b><p>@user.Description</p></div>
-        </div>
-        <div class="friendlistcontainer">
-            <b>Friendlist</b>
-            @foreach (var friend in user.Friends)
-            {
-                <button class="friendcontainer" @onclick="(() => ClickFriend(friend.UserFriend.Id.ToString()))">
-                <div class="friendimage"><b>Imagecontainer</b><br />@friend.UserFriend.Image</div>
-                <div class="friendname"><b>Name: </b>@friend.UserFriend.Name</div>
-                </button>
-            }
+            <div class="friendlistcontainer">
+            <b>Friendlist</b><div class="innerfriendlistcontainer" style="overflow: auto;">
+                @foreach (var friend in user.Friends)
+                {
+                    <div class="friendcontainer" @onclick="(() => ClickFriend(friend.UserFriend.Id.ToString()))">
+                    <div class="friendimage"><b>Img</b><!--@friend.UserFriend.Image--></div>
+                        <div class="friendname" style="align-items: center;"><b>Name: </b>@friend.UserFriend.Name</div>
+                    </div>
+                }
+            </div>
         </div>
     </div>
 }
