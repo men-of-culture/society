@@ -1,4 +1,4 @@
-﻿@page "/profile"
+﻿@page "/myprofile"
 @rendermode InteractiveServer
 @attribute [StreamRendering]
 
@@ -10,15 +10,15 @@
     </h1>
 </div>
 
-@if (userguid == null && user == null)
+@if (user is null)
 {
     <div class="loading">Loading...</div>
 }
-else if (userguid != null && (user == null || user.Name == ""))
+else if (user.Id == Guid.Empty)
 {
-    <div class="loading">Invalid login</div>
+    <div class="loading">Something went wrong...</div>
 }
-else if (user != null && user.Name != "")
+else
 {
     <div class="userlist">
         <div class="usercontainer">
@@ -32,19 +32,26 @@ else if (user != null && user.Name != "")
             <b>Friendlist</b>
             @foreach (var friend in user.Friends)
             {
-                <div class="friendcontainer">
-                    <div class="friendimage"><b>Imagecontainer</b><br />@friend.UserFriend.Image</div>
-                    <div class="friendname"><b>Name: </b>@friend.UserFriend.Name</div>
-                </div>
+                <button class="friendcontainer" @onclick="(() => ClickFriend(friend.UserFriend.Id.ToString()))">
+                <div class="friendimage"><b>Imagecontainer</b><br />@friend.UserFriend.Image</div>
+                <div class="friendname"><b>Name: </b>@friend.UserFriend.Name</div>
+                </button>
             }
         </div>
     </div>
 }
 
 @code {
-    private User? user = new();
+    private User? user;
     string? userguid;
     private HttpResponseMessage response = new();
+
+    private void ClickFriend(string friendId)
+    {
+        profileGuid = friendId;
+
+        NavManager.NavigateTo("/userprofile");
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -52,7 +59,6 @@ else if (user != null && user.Name != "")
         {
             userguid = (await ProtectedSessionStore.GetAsync<string>("login")).Value;
             await RefreshList();
-
             StateHasChanged();
         }
     }

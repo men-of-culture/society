@@ -13,15 +13,22 @@
 
 @code {
     private string input = "";
-    private User? user = new();
-    private IEnumerable<User>? users = new List<User>();
+    private User? user;
+    private IEnumerable<User>? users;
     private HttpResponseMessage response = new();
 
     async Task SetLogin()
     {
         // make input check and prompt if invalid (spaces or periods)
-        await ProtectedSessionStore.SetAsync("login", input);
-        NavManager.NavigateTo("/profile");
+        if (Regex.IsMatch(input, @"^[a-zA-Z0-9_]+$"))
+        {
+            await ProtectedSessionStore.SetAsync("login", input);
+        }
+        else
+        {
+            await ProtectedSessionStore.SetAsync("login", "invalid");
+        }
+        NavManager.NavigateTo("/myprofile");
     }
 
     async Task RandomProfile()
@@ -31,13 +38,15 @@
         response = await httpClient.GetAsync(API_URL + "api/User/");
         users = JsonConvert.DeserializeObject<IEnumerable<User>>(await response.Content.ReadAsStringAsync()) ?? new List<User>();
         httpClient.Dispose();
-        if (users != null)
-            user = users.First();
-        if (user != null)
+
+        user = users?.FirstOrDefault();
+        if (user is not null)
+        {
             input = user.Id.ToString();
+        }
 
         // make input check and prompt if invalid (spaces or periods)
         await ProtectedSessionStore.SetAsync("login", input);
-        NavManager.NavigateTo("/profile");
+        NavManager.NavigateTo("/myprofile");
     }
 }

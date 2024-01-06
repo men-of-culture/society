@@ -1,0 +1,55 @@
+﻿@page "/userprofile"
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
+<PageTitle>Profile</PageTitle>
+
+<div class="pagetitle">
+    <h1>
+        UserProfile
+    </h1>
+</div>
+
+@if (user is null)
+{
+    <div class="loading">Loading...</div>
+}
+else if (user.Id == Guid.Empty)
+{
+    <div class="loading">Something went wrong...</div>
+}
+else
+{
+    <div class="userlist">
+        <div class="usercontainer">
+            <div class="usernamecontainer">
+                <div class="username"><b>Name: </b>@user.Name</div>
+                <div class="userimage"><b>Imagecontainer</b><br />@user.Image</div>
+            </div>
+            <div class="userdescription"><b>Description: </b><p>@user.Description</p></div>
+        </div>
+    </div>
+}
+
+@code {
+    private User? user;
+    string? userguid;
+    private HttpResponseMessage response = new();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await RefreshList();
+            StateHasChanged();
+        }
+    }
+
+    private async Task RefreshList()
+    {
+        HttpClient httpClient = new HttpClient();
+        response = await httpClient.GetAsync(API_URL + "api/User/" + profileGuid);
+        user = JsonConvert.DeserializeObject<User>(await response.Content.ReadAsStringAsync()) ?? new User();
+        httpClient.Dispose();
+    }
+}
