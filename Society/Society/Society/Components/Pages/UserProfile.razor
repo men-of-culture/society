@@ -55,6 +55,24 @@ else{
                     <button @onclick="(() => RemoveFriend(profileGuid))" class="dashedborder" style="margin-top: 10px; display: inline-block; width: 50%; margin-left: 5px;">Remove friend</button>
                 }
             </div>
+
+            <div class="feedcontainer" style="width: 100%; height: 100%; /*! margin: 20px; */ border-top: 2px black dashed;display: block;margin-top: 20px;padding: 0 20px;padding-bottom: 20px;">
+                
+                <!--Remove chunk when implemented-->
+                @foreach (var friend in user.Friends)
+                {
+                    <div class="feedpost" style="background-color: rgba(200, 200, 200, 0.5);display: flex; flex-direction: column;border: 2px black dashed; width: 100%; /*! margin: 0 20px; */height: auto;/*! margin: 20px; */margin-top: 20px;">
+                        <div class="feedpostheader" style="border-bottom: 2px dashed black; display: flex;"><b>Name</b><b style="width: 100%; ">Feedpost</b><b>Time</b></div>
+                        <div style="padding: 10px;height: 100%; background-color: rgba(200, 200, 200, 0.5);background-color: white;">
+                            <p style="text-align: left;">Today i started a new job at yadayada some stuff about daily life i want to share yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada yadayada </p>
+                        </div>
+                        <button style="padding: 0; border: none;border-top: 2px black dashed;height: auto; width: 100%; background-color: rgba(200, 200, 200, 0.5);">Comments</button>
+                    </div>
+                }
+                <!--Remove chunk when implemented-->
+
+            </div>
+
         </div>
         <div class="friendlistcontainer" style="">
             <b>Messages</b><div style="display:flex;flex-direction:row; justify-content: center;"><input type="text" placeholder="Got something to say?" style="border: 2px black dashed;margin: 20px; margin-top: 0; margin-right: 10px; width: 100%;" /><button style="border: 2px black dashed;margin: 0px 20px 20px 0px !important;">Send</button></div><div class="innerfriendlistcontainer" style="overflow: auto;">
@@ -62,7 +80,7 @@ else{
                 {
                     <div class="friendcontainer">
                         <div class="friendimage"><b>{Name}<br />Img</b><!--@friend.UserFriend.Image--></div>
-                        <div class="friendname" style="text-align: left;"><b></b> contentcontentcontentbreak content contentcontent content content</div>
+                        <div class="friendname" style="background-color: white !important;text-align: left;">contentcontentcontentbreak content contentcontent content content</div>
                     </div>
                 }
             </div>
