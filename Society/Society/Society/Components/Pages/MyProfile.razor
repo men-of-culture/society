@@ -1,6 +1,18 @@
 ﻿@page "/myprofile"
 @rendermode InteractiveServer
 @attribute [StreamRendering]
+@inject Society.Components.SharedPageVariables.AppState AppState
+
+@{
+    /*if(user is not null && user.Id != Guid.Empty)
+    {*/
+        AppState.LoggedIn = true;
+    /*}
+    else
+    {
+        AppState.LoggedIn = false;
+    }*/
+}
 
 <PageTitle>Profile</PageTitle>
 

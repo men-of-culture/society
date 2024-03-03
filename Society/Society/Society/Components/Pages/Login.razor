@@ -1,14 +1,24 @@
 ﻿@page "/"
 @rendermode InteractiveServer
 @attribute [StreamRendering]
+@inject Society.Components.SharedPageVariables.AppState AppState
+
+@{
+    AppState.LoggedIn = false;
+}
 
 <PageTitle>Login</PageTitle>
-
-<h1 class="pagetitle">Login</h1>
-<div class="content">
-    <input type="text" placeholder="Enter user GUID" id="input" @bind-value="@input" />
-    <button @onclick="SetLogin">Login</button>
-    <button @onclick="RandomProfile">Random</button>
+<div style="display: flex; flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; flex-direction: row;">
+        <p style="width: 80px; height: 55px; background-color: black; color: white; display: flex; align-items: center; justify-content: center; padding-left: 5px;">Society</p>
+        <h1 style="margin: 0;" class="pagetitle">Login</h1>
+        <p style="width: 80px; height: 55px; background-color: black; color: white; display: flex; align-items: center; justify-content: center; padding-left: 5px;"></p>
+    </div>
+    <div class="content">
+        <input type="text" placeholder="Enter user GUID" id="input" @bind-value="@input" />
+        <button @onclick="SetLogin">Login</button>
+        <button @onclick="RandomProfile">Random</button>
+    </div>
 </div>
 
 @code {

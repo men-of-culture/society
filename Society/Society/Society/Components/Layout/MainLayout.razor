@@ -1,8 +1,13 @@
 ﻿@inherits LayoutComponentBase
+@implements IDisposable
+@inject Society.Components.SharedPageVariables.AppState AppState
 
 <div class="page">
     
+    @if (AppState.LoggedIn == false)
+    {
         <NavMenu />
+    }
 
     <main>
         <article class="content px-4" render-mode="ServerPrerendered">
@@ -16,3 +21,15 @@
     <a href="" class="reload">Reload</a>
     <a class="dismiss">🗙</a>
 </div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        AppState.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        AppState.OnChange -= StateHasChanged;
+    }
+}
