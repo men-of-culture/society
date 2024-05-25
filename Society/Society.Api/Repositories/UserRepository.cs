@@ -32,8 +32,11 @@ namespace Society.Api.Repositories
         public void Delete(Guid id)
         {
             var user = _context.User.Find(id);
-            _context.User.Remove(user!);
-            _context.SaveChanges();
+            if (user is not null)
+            {
+                _context.User.Remove(user);
+                _context.SaveChanges();
+            }
         }
 
         public void Update(User model)

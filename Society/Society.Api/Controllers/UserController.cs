@@ -29,7 +29,7 @@ namespace Society.Api.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<User>> Get()
+        public ActionResult<IEnumerable<User>> GetAll()
         {
             var users = _repository.GetAll().ToList();
             if (users.IsNullOrEmpty())
