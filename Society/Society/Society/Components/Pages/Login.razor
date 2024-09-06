@@ -11,7 +11,33 @@
     <button @onclick="RandomProfile">Random</button>
 </div>
 
+<button @onclick="(() => ToggleComments())" style="padding: 0; border: none;border-top: 2px black dashed;height: auto; width: 100%; background-color: rgb(228, 228, 228, 1);">
+    <b>Comments</b>
+</button>
+<div class="@commentsClass">
+    <div>
+        <div>some comment</div>
+        <div>another comment</div>
+    </div>
+</div>
+<div>comment below</div>
+<div>another comment below</div>
+
 @code {
+    private string commentsClass = "comments";
+
+    private void ToggleComments()
+    {
+        if (commentsClass == "comments show")
+        {
+            commentsClass = "comments";
+        }
+        else
+        {
+            commentsClass = "comments show";
+        }
+    }
+
     private string input = "";
     private User? user;
     private IEnumerable<User>? users;

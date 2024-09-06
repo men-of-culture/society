@@ -1,0 +1,40 @@
+﻿body {
+}
+
+/* WITH GRID */
+.comments {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .5s;
+}
+
+.comments > div {
+    overflow: hidden;
+}
+
+.show, button:hover ~ .comments {
+    grid-template-rows: 1fr;
+}
+
+/* WITHOUT GRID */
+/*
+.comment {
+    background-color: red;
+    height: 0;
+    transition: all .3s ease;
+    transform: scaleY(0);
+    opacity: 0;
+    visibility: hidden;
+    margin-bottom: 0;
+    translate: 0 -50%;
+}
+
+.show {
+    opacity: 1;
+    visibility: visible;
+    margin-bottom: 0%;
+    height: 100%;
+    transform: scaleY(1);
+    translate: 0 0%;
+}
+*/

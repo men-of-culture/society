@@ -18,6 +18,11 @@ namespace Society.Api
             modelBuilder.Entity<Friend>().HasOne(f => f.User).WithMany(u => u.Friends).HasForeignKey(f => f.UserId).OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Friend>().HasOne(f => f.UserFriend).WithMany().HasForeignKey(f => f.FriendId).OnDelete(DeleteBehavior.Restrict);
+
+
+            /*modelBuilder.Entity<User>().HasKey(u => new { u.Id });
+
+            modelBuilder.Entity<User>().HasMany(u => u.Friends).WithOne(f => f.User).HasForeignKey(f => f.UserId).OnDelete(DeleteBehavior.Restrict);*/
         }
     }
 }

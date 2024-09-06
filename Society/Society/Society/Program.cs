@@ -10,6 +10,8 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddDistributedMemoryCache();
 
+builder.Services.AddServerSideBlazor().AddCircuitOptions(options => { options.DetailedErrors = true; });
+
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromSeconds(100);  //you can change the session expired time.  
